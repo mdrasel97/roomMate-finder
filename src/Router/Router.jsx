@@ -3,6 +3,9 @@ import Root from "../Root/Root";
 import Home from "../pages/Home";
 import SignIn from "../pages/Auth/SignIn";
 import SignUp from "../pages/Auth/SignUp";
+import AddToFindRooMate from "../pages/AddToFindRoomate";
+import BrowseListing from "../pages/BrowseListing";
+import MyListing from "../pages/MyListing";
 
 export const router = createBrowserRouter([
   {
@@ -20,6 +23,18 @@ export const router = createBrowserRouter([
       {
         path: "signUp",
         Component: SignUp,
+      },
+      {
+        path: "addToFindRoommate",
+        Component: AddToFindRooMate,
+      },
+      {
+        path: "browseListing",
+        Component: BrowseListing,
+      },
+      {
+        path: "myListing",
+        Component: MyListing,
       },
     ],
   },

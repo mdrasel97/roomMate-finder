@@ -9,13 +9,13 @@ const Navbar = () => {
         <NavLink to={"/"}>Home</NavLink>
       </li>
       <li>
-        <NavLink to={"about"}>Add To Find Roommate</NavLink>
+        <NavLink to={"/addToFindRoomMate"}>Add To Find Roommate</NavLink>
       </li>
       <li>
-        <NavLink to={"contact"}>Browse Listing</NavLink>
+        <NavLink to={"/browseListing"}>Browse Listing</NavLink>
       </li>
       <li>
-        <NavLink to={"heda"}>My Listings </NavLink>
+        <NavLink to={"/myListing"}>My Listings </NavLink>
       </li>
     </>
   );

@@ -10,14 +10,14 @@ const SignIn = () => {
       <h1 className="text-2xl font-bold text-center">Welcome Back</h1>
       <form onSubmit={handleSignIn} className="space-y-6">
         <div className="space-y-1 text-sm">
-          <label htmlFor="username" className="block dark:text-gray-600">
-            Username
+          <label htmlFor="email" className="block dark:text-gray-600">
+            Email
           </label>
           <input
-            type="text"
-            name="name"
-            id="name"
-            placeholder="name"
+            type="email"
+            name="email"
+            id="email"
+            placeholder="jon@duo.com"
             className="w-full px-4 py-3 rounded-md border dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600"
           />
         </div>
@@ -80,13 +80,9 @@ const SignIn = () => {
       </div>
       <p className="text-xs text-center sm:px-6 dark:text-gray-600">
         Don't have an account?
-        <a
-          rel="noopener noreferrer"
-          href="#"
-          className="underline dark:text-gray-800"
-        >
+        <Link to={"/signUp"} className="underline dark:text-gray-800">
           Sign up
-        </a>
+        </Link>
       </p>
     </div>
   );
