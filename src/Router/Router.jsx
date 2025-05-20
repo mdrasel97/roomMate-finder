@@ -6,6 +6,7 @@ import SignUp from "../pages/Auth/SignUp";
 import AddToFindRooMate from "../pages/AddToFindRoomate";
 import BrowseListing from "../pages/BrowseListing";
 import MyListing from "../pages/MyListing";
+import PrivateRoute from "../pages/Auth/PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -26,7 +27,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "addToFindRoommate",
-        Component: AddToFindRooMate,
+        element: <AddToFindRooMate />,
       },
       {
         path: "browseListing",

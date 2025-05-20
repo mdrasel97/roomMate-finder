@@ -14,9 +14,12 @@ const Navbar = () => {
       <li>
         <NavLink to={"/browseListing"}>Browse Listing</NavLink>
       </li>
-      <li>
-        <NavLink to={"/myListing"}>My Listings </NavLink>
-      </li>
+
+      {/* {user && (
+        <li>
+          <NavLink to={"/myListing"}>My Listings </NavLink>
+        </li>
+      )} */}
     </>
   );
   return (
