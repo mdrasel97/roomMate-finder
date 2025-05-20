@@ -19,8 +19,8 @@ const Footer = () => {
           {/* Company Info */}
           <div>
             <div className="flex items-center space-x-2 mb-4">
-              <Home className="h-5 w-5 text-purple-600" />
-              <h3 className="text-lg font-bold text-purple-600">RoomieMatch</h3>
+              <Home className="h-5 w-5 text-primary" />
+              <h3 className="text-xl font-bold text-primary">RoomieMatch</h3>
             </div>
             <p className="text-gray-600 dark:text-gray-400 mb-4">
               Finding your perfect roommate match has never been easier. Create

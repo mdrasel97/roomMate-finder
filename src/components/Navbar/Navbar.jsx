@@ -49,19 +49,19 @@ const Navbar = () => {
             </ul>
           </div>
           <div className="flex items-center gap-2 justify-center">
-            <FaHome size={25} />
-            <h2 className=" text-3xl font-bold">RomeoMatch</h2>
+            <FaHome size={25} color="text-primary" />
+            <h2 className=" text-3xl font-bold text-primary">RomeoMatch</h2>
           </div>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{links}</ul>
         </div>
         <div className="navbar-end gap-3">
-          <Link to={"/signIn"} className="btn">
-            Button
+          <Link to={"/signIn"} className="btn hover:btn-secondary">
+            Sign In
           </Link>
-          <Link to={"/signUp"} className="btn">
-            Button
+          <Link to={"/signUp"} className="btn btn-primary">
+            Sign Up
           </Link>
         </div>
       </div>
