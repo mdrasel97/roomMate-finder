@@ -3,10 +3,10 @@ import Root from "../Root/Root";
 import Home from "../pages/Home";
 import SignIn from "../pages/Auth/SignIn";
 import SignUp from "../pages/Auth/SignUp";
-import AddToFindRooMate from "../pages/AddToFindRoomate";
 import BrowseListing from "../pages/BrowseListing";
 import MyListing from "../pages/MyListing";
 import PrivateRoute from "../pages/Auth/PrivateRoute";
+import AddToFindRoomMate from "../pages/AddToFindRoomMate";
 
 export const router = createBrowserRouter([
   {
@@ -16,6 +16,7 @@ export const router = createBrowserRouter([
       {
         path: "/",
         Component: Home,
+        loader: () => fetch("http://localhost:3000/roommates"),
       },
       {
         path: "signIn",
@@ -27,7 +28,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "addToFindRoommate",
-        element: <AddToFindRooMate />,
+        element: (
+          <PrivateRoute>
+            <AddToFindRoomMate />
+          </PrivateRoute>
+        ),
       },
       {
         path: "browseListing",

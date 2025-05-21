@@ -1,8 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FaHome } from "react-icons/fa";
 import { Link, NavLink } from "react-router";
+import { AuthContext } from "../../Context/AuthContext";
+import { toast } from "react-toastify";
+import { CgProfile } from "react-icons/cg";
 
 const Navbar = () => {
+  const { user, singOutUser } = useContext(AuthContext);
+  // console.log(user);
+  const handleLogOut = () => {
+    singOutUser()
+      .then(() => {
+        toast.success("Sign out successful");
+        window.location.href = "/signIn";
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
+  };
   const links = (
     <>
       <li>
@@ -15,11 +30,11 @@ const Navbar = () => {
         <NavLink to={"/browseListing"}>Browse Listing</NavLink>
       </li>
 
-      {/* {user && (
+      {user && (
         <li>
           <NavLink to={"/myListing"}>My Listings </NavLink>
         </li>
-      )} */}
+      )}
     </>
   );
   return (
@@ -60,12 +75,42 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1">{links}</ul>
         </div>
         <div className="navbar-end gap-3">
-          <Link to={"/signIn"} className="btn hover:btn-secondary">
-            Sign In
-          </Link>
-          <Link to={"/signUp"} className="btn btn-primary">
-            Sign Up
-          </Link>
+          {user ? (
+            <div className="md:flex items-center space-x-4">
+              {/* <motion.div
+                whileHover={{ scale: 1.1 }}
+                className="cursor-pointer"
+                onClick={handleProfileClick}
+              > */}
+              {user.photoURL ? (
+                <img
+                  src={user.photoURL}
+                  alt={user.displayName || "User"}
+                  className="h-9 w-9 rounded-full object-cover border-2 border-primary block"
+                />
+              ) : (
+                <CgProfile className="h-9 w-9 rounded-full border" />
+              )}
+              {/* </motion.div> */}
+              <button
+                onClick={handleLogOut}
+                className="btn btn-primary hidden md:block"
+              >
+                Log Out
+              </button>
+            </div>
+          ) : (
+            <div className="hidden md:flex items-center space-x-3">
+              <Link to="/signIn" className="btn">
+                Login
+              </Link>
+              <div>
+                <Link to="/signUp" className="btn btn-primary ">
+                  Sign Up
+                </Link>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </nav>

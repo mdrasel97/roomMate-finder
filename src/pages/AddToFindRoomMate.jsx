@@ -1,11 +1,52 @@
-import React from "react";
+import React, { useContext, useState } from "react";
+import Swal from "sweetalert2";
+import { AuthContext } from "../Context/AuthContext";
 
-const AddToFindRooMate = () => {
+const AddToFindRoomMate = () => {
+  const { user } = useContext(AuthContext);
+  const [selectedLifestyle, setSelectedLifestyle] = useState([]);
+  // console.log(user);
   const handleAddFindRoomMate = (e) => {
     e.preventDefault();
+
+    const form = e.target;
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+    data.lifestyle = selectedLifestyle;
+    console.log(data);
+
+    fetch("http://localhost:3000/roommates", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Your Account Is Created",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        form.reset();
+        setSelectedLifestyle([]);
+      });
   };
 
   const lifestyleOptions = ["Pets", "Smoking", "Night Owl", "Vegetarian"];
+
+  const handleCheckboxChange = (event) => {
+    const { value, checked } = event.target;
+    if (checked) {
+      setSelectedLifestyle([...selectedLifestyle, value]);
+    } else {
+      setSelectedLifestyle(selectedLifestyle.filter((item) => item !== value));
+    }
+  };
   return (
     <div className="w-10/12 mx-auto flex items-center justify-center my-5">
       <div className="bg-gray-200 p-10">
@@ -80,9 +121,8 @@ const AddToFindRooMate = () => {
                     <input
                       type="checkbox"
                       name="lifestyle"
+                      onChange={handleCheckboxChange}
                       value={option}
-                      // checked={formData.lifestyle.includes(option)}
-                      // onChange={handleChange}
                       className="checkbox mr-2"
                     />
                     {option}
@@ -90,21 +130,23 @@ const AddToFindRooMate = () => {
                 ))}
               </div>
             </fieldset>
+            {/* <div>
+              // checked={formData.lifestyle.includes(option)}
+              // onChange={handleChange}
+            </div> */}
+            {/* Availability */}
             <fieldset className="fieldset bg-base-200 border-base-300 rounded-box p-4">
-              {/* Availability */}
-              <div>
-                <label className="label font-medium mb-1">Availability</label>
-                <select
-                  name="availability"
-                  className="select select-bordered w-full"
-                  //   value={formData.availability}
-                  //   onChange={handleChange}
-                  required
-                >
-                  <option value="Available">Available</option>
-                  <option value="Not Available">Not Available</option>
-                </select>
-              </div>
+              <label className="label font-medium mb-1">Availability</label>
+              <select
+                name="availability"
+                className="select select-bordered w-full"
+                //   value={formData.availability}
+                //   onChange={handleChange}
+                required
+              >
+                <option value="Available">Available</option>
+                <option value="Not Available">Not Available</option>
+              </select>
             </fieldset>
           </div>
           {/* Contact Info */}
@@ -139,7 +181,7 @@ const AddToFindRooMate = () => {
               <input
                 type="text"
                 className="input input-bordered w-full bg-gray-100"
-                // value={formData.userName}
+                value={user.displayName}
                 readOnly
               />
             </div>
@@ -148,7 +190,7 @@ const AddToFindRooMate = () => {
               <input
                 type="email"
                 className="input input-bordered w-full bg-gray-100"
-                // value={formData.userEmail}
+                value={user.email}
                 readOnly
               />
             </div>
@@ -166,4 +208,4 @@ const AddToFindRooMate = () => {
   );
 };
 
-export default AddToFindRooMate;
+export default AddToFindRoomMate;

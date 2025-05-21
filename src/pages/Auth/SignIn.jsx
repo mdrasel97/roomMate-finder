@@ -1,9 +1,45 @@
-import React from "react";
-import { Link } from "react-router";
+import React, { useContext } from "react";
+import { Link, useLocation, useNavigate } from "react-router";
+import { AuthContext } from "../../Context/AuthContext";
+import { toast } from "react-toastify";
 
 const SignIn = () => {
+  const { signInUser, setLoading } = useContext(AuthContext);
+
+  const location = useLocation();
+  const from = location?.state?.from;
+  const navigate = useNavigate();
+
   const handleSignIn = (e) => {
     e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(email, password);
+
+    signInUser(email, password)
+      .then((result) => {
+        setLoading(false);
+        const user = result.user;
+        console.log(user);
+        navigate(from ? from : "/");
+        toast.success("Sign In success");
+      })
+      .catch((error) => {
+        setLoading(false);
+
+        const errorCode = error.code;
+
+        if (errorCode === "auth/user-not-found") {
+          toast.error(
+            "No account found with this email. Please register first."
+          );
+        } else if (errorCode === "auth/wrong-password") {
+          toast.error("Incorrect password. Please try again.");
+        } else {
+          toast.error(error.message);
+        }
+      });
   };
   return (
     <div className="w-full max-w-md p-8 mx-auto my-5 space-y-3 rounded-xl dark:bg-gray-50 dark:text-gray-800">
@@ -18,7 +54,7 @@ const SignIn = () => {
             name="email"
             id="email"
             placeholder="jon@duo.com"
-            className="w-full px-4 py-3 rounded-md border dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600"
+            className="w-full px-4 py-3 rounded-md border dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-primary"
           />
         </div>
         <div className="space-y-1 text-sm">
@@ -30,7 +66,7 @@ const SignIn = () => {
             name="password"
             id="password"
             placeholder="Password"
-            className="w-full px-4 py-3 rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 border focus:dark:border-violet-600"
+            className="w-full px-4 py-3 rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 border focus:dark:border-primary"
           />
           <div className="flex justify-end text-xs mt-3 dark:text-gray-600">
             <a rel="noopener noreferrer" href="#">
@@ -38,7 +74,7 @@ const SignIn = () => {
             </a>
           </div>
         </div>
-        <button className="block w-full p-3 text-center rounded-sm dark:text-gray-50 dark:bg-violet-600">
+        <button className="block w-full p-3 text-center rounded-sm dark:text-gray-50 dark:bg-primary">
           Sign in
         </button>
       </form>

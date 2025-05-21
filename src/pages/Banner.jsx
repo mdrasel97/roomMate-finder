@@ -84,7 +84,7 @@ const Banner = () => {
                 {slide.subtitle}
               </p>
               <button
-                asChild
+                // asChild
                 className="btn animate-fade-in"
                 style={{ animationDelay: "0.4s" }}
               >
