@@ -7,6 +7,7 @@ import BrowseListing from "../pages/BrowseListing";
 import MyListing from "../pages/MyListing";
 import PrivateRoute from "../pages/Auth/PrivateRoute";
 import AddToFindRoomMate from "../pages/AddToFindRoomMate";
+import RoommateDetails from "../pages/RoommateDetails";
 
 export const router = createBrowserRouter([
   {
@@ -16,7 +17,13 @@ export const router = createBrowserRouter([
       {
         path: "/",
         Component: Home,
-        loader: () => fetch("http://localhost:3000/roommates"),
+        loader: () => fetch("http://localhost:3000/featured-roommates"),
+      },
+      {
+        path: "roommateDetails/:id",
+        Component: RoommateDetails,
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/roommates/${params.id}`),
       },
       {
         path: "signIn",

@@ -107,7 +107,7 @@ const AddToFindRoomMate = () => {
                 </option>
                 <option value="Single">Single</option>
                 <option value="Shared">Shared</option>
-                <option value="Studio">Studio</option>
+                <option value="Studio">Master</option>
               </select>
             </fieldset>
             {/* Lifestyle Preferences */}

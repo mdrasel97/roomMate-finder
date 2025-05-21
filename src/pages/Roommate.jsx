@@ -73,7 +73,7 @@ const Roommate = ({ roommate }) => {
             <span className="text-sm">{user?.displayName}</span>
           </div>
 
-          <Link to={`/roommate/${_id}`}>
+          <Link to={`/roommateDetails/${_id}`}>
             <button className="btn btn-sm bg-purple-500 text-white hover:bg-purple-600">
               See More
             </button>
