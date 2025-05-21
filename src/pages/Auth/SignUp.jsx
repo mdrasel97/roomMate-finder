@@ -12,10 +12,10 @@ const SignUp = () => {
     e.preventDefault();
     const form = e.target;
     const formData = new FormData(form);
-    const { email, password, ...restFormData } = Object.fromEntries(
+    const { photo, email, password, ...restFormData } = Object.fromEntries(
       formData.entries()
     );
-    console.log(email, password, restFormData);
+    console.log(photo, email, password, restFormData);
     // Password validation
     // if (password.length < 6) {
     //   setPasswordError("Password must be at least 6 characters long");
@@ -37,7 +37,9 @@ const SignUp = () => {
         console.log(user);
         const userProfile = {
           email,
+          photoURL: photo,
           ...restFormData,
+
           creationTime: result.user?.metadata?.creationTime,
           lastSignInTime: result.user?.metadata?.lastSignInTime,
         };

@@ -20,8 +20,17 @@ export const router = createBrowserRouter([
         loader: () => fetch("http://localhost:3000/featured-roommates"),
       },
       {
+        path: "browseListing",
+        Component: BrowseListing,
+        loader: () => fetch("http://localhost:3000/roommates"),
+      },
+      {
         path: "roommateDetails/:id",
-        Component: RoommateDetails,
+        element: (
+          <PrivateRoute>
+            <RoommateDetails />
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:3000/roommates/${params.id}`),
       },
@@ -40,10 +49,6 @@ export const router = createBrowserRouter([
             <AddToFindRoomMate />
           </PrivateRoute>
         ),
-      },
-      {
-        path: "browseListing",
-        Component: BrowseListing,
       },
       {
         path: "myListing",

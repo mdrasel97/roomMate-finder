@@ -7,7 +7,7 @@ import { CgProfile } from "react-icons/cg";
 
 const Navbar = () => {
   const { user, singOutUser } = useContext(AuthContext);
-  // console.log(user);
+  console.log(user);
   const handleLogOut = () => {
     singOutUser()
       .then(() => {
@@ -77,11 +77,6 @@ const Navbar = () => {
         <div className="navbar-end gap-3">
           {user ? (
             <div className="md:flex items-center space-x-4">
-              {/* <motion.div
-                whileHover={{ scale: 1.1 }}
-                className="cursor-pointer"
-                onClick={handleProfileClick}
-              > */}
               {user.photoURL ? (
                 <img
                   src={user.photoURL}

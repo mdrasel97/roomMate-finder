@@ -11,16 +11,20 @@ const AddToFindRoomMate = () => {
 
     const form = e.target;
     const formData = new FormData(form);
-    const data = Object.fromEntries(formData.entries());
-    data.lifestyle = selectedLifestyle;
-    console.log(data);
-
+    const restFormData = Object.fromEntries(formData.entries());
+    // data.lifestyle = selectedLifestyle;
+    // console.log(data);
+    const userProfile = {
+      email: user?.email, // instead of from form
+      ...restFormData,
+      lifestyle: selectedLifestyle,
+    };
     fetch("http://localhost:3000/roommates", {
       method: "POST",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(userProfile),
     })
       .then((res) => res.json())
       .then((data) => {

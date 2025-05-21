@@ -1,8 +1,9 @@
 import React from "react";
 import Banner from "./Banner";
 import HowItWorks from "./HowItWorks";
-import { useLoaderData } from "react-router";
+import { Link, useLoaderData } from "react-router";
 import Roommate from "./Roommate";
+import { FaArrowRightLong } from "react-icons/fa6";
 
 const Home = () => {
   const roommates = useLoaderData();
@@ -22,6 +23,12 @@ const Home = () => {
           {roommates.map((roommate) => (
             <Roommate key={roommate._id} roommate={roommate}></Roommate>
           ))}
+        </div>
+        <div className="text-center mt-12 flex items-center justify-center">
+          <button className="btn btn-primary flex ">
+            <Link to="/browseListing">View All Listings</Link>
+            <FaArrowRightLong className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+          </button>
         </div>
       </div>
       <HowItWorks />
