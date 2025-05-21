@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Context/AuthContext";
 import { MdDelete } from "react-icons/md";
 import { FaPenFancy } from "react-icons/fa";
+import Swal from "sweetalert2";
+import { Link } from "react-router";
 
 const MyListing = () => {
   const { user, setLoading, loading } = useContext(AuthContext);
@@ -16,6 +18,39 @@ const MyListing = () => {
       .then((data) => setListings(data));
     setLoading(false);
   }, [user, setLoading]);
+
+  const handleDelete = (id) => {
+    // console.log(id);
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:3000/roommates/${id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.deletedCount) {
+              const remaining = listings.filter(
+                (listing) => listing._id !== id
+              );
+              setListings(remaining);
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your Roommate has been deleted.",
+                icon: "success",
+              });
+            }
+          });
+      }
+    });
+  };
   return (
     <div className="p-4">
       <h2 className="text-xl font-semibold mb-4">My Listings</h2>
@@ -66,10 +101,16 @@ const MyListing = () => {
                   </td>
                   <td>Purple</td>
                   <th className="space-x-2">
-                    <button className="btn btn-primary">
+                    <Link
+                      to={`/updatedRoommate/${item._id}`}
+                      className="btn btn-primary"
+                    >
                       <FaPenFancy size={25} />
-                    </button>
-                    <button className="btn btn-primary">
+                    </Link>
+                    <button
+                      onClick={() => handleDelete(item._id)}
+                      className="btn btn-primary"
+                    >
                       <MdDelete size={25} />
                     </button>
                   </th>

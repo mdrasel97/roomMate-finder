@@ -4,6 +4,7 @@ import { Link, NavLink } from "react-router";
 import { AuthContext } from "../../Context/AuthContext";
 import { toast } from "react-toastify";
 import { CgProfile } from "react-icons/cg";
+import logoImage from "../../assets/logo.png";
 
 const Navbar = () => {
   const { user, singOutUser } = useContext(AuthContext);
@@ -66,8 +67,9 @@ const Navbar = () => {
               {links}
             </ul>
           </div>
-          <div className="flex items-center gap-2 justify-center">
-            <FaHome size={25} color="text-primary" />
+          <div className="flex items-center gap-1 justify-center">
+            <img className="w-9" src={logoImage} alt="" />
+            {/* <FaHome size={25} color="text-primary" /> */}
             <h2 className=" text-3xl font-bold text-primary">RomeoMatch</h2>
           </div>
         </div>
@@ -77,16 +79,22 @@ const Navbar = () => {
         <div className="navbar-end gap-3">
           {user ? (
             <div className="md:flex items-center space-x-4">
-              {user.photoURL ? (
-                <img
-                  src={user.photoURL}
-                  alt={user.displayName || "User"}
-                  className="h-9 w-9 rounded-full object-cover border-2 border-primary block"
-                />
-              ) : (
-                <CgProfile className="h-9 w-9 rounded-full border" />
-              )}
-              {/* </motion.div> */}
+              <div className="relative group inline-block">
+                {user.photoURL ? (
+                  <img
+                    src={user.photoURL}
+                    alt={user.displayName || "User"}
+                    className="h-9 w-9 rounded-full object-cover border-2 border-primary cursor-pointer"
+                  />
+                ) : (
+                  <CgProfile className="h-9 w-9 rounded-full border cursor-pointer" />
+                )}
+                {/* Tooltip */}
+                <div className="absolute top-full left-1/2 translate-x-[-50%] mt-2 whitespace-nowrap px-2 py-1 text-sm bg-gray-800 text-white rounded opacity-0 group-hover:opacity-100 transition-opacity z-50">
+                  {user.displayName || "User"}
+                </div>
+              </div>
+
               <button
                 onClick={handleLogOut}
                 className="btn btn-primary hidden md:block"

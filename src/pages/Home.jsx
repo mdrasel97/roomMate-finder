@@ -4,6 +4,7 @@ import HowItWorks from "./HowItWorks";
 import { Link, useLoaderData } from "react-router";
 import Roommate from "./Roommate";
 import { FaArrowRightLong } from "react-icons/fa6";
+import SuccessStory from "./SuccessStory";
 
 const Home = () => {
   const roommates = useLoaderData();
@@ -11,15 +12,15 @@ const Home = () => {
   return (
     <div>
       <Banner />
-      <div>
+      <div className="my-10">
         <h2 className="text-3xl text-center font-semibold">
           Featured Roommates
         </h2>
-        <p className="text-center">
+        <p className="text-center my-5">
           Discover our top available roommate listings based on compatibility
           and preferences
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-3">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 w-11/12 mx-auto">
           {roommates.map((roommate) => (
             <Roommate key={roommate._id} roommate={roommate}></Roommate>
           ))}
@@ -32,6 +33,7 @@ const Home = () => {
         </div>
       </div>
       <HowItWorks />
+      <SuccessStory />
     </div>
   );
 };

@@ -21,7 +21,7 @@ const Roommate = ({ roommate }) => {
     ? [lifestyle]
     : [];
   return (
-    <div className="card w-96 bg-base-100 shadow-md">
+    <div className="card bg-base-100 shadow-md border border-primary">
       <div className="card-body">
         <div className="flex justify-between items-start">
           <h2 className="card-title">{title}</h2>
@@ -74,7 +74,7 @@ const Roommate = ({ roommate }) => {
           </div>
 
           <Link to={`/roommateDetails/${_id}`}>
-            <button className="btn btn-sm bg-purple-500 text-white hover:bg-purple-600">
+            <button className="btn btn-sm bg-primary text-white hover:bg-primary">
               See More
             </button>
           </Link>

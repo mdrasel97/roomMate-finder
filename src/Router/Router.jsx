@@ -8,6 +8,8 @@ import MyListing from "../pages/MyListing";
 import PrivateRoute from "../pages/Auth/PrivateRoute";
 import AddToFindRoomMate from "../pages/AddToFindRoomMate";
 import RoommateDetails from "../pages/RoommateDetails";
+import UpdateRoommate from "../pages/UpdateRoommate";
+import Error from "../components/Error/Error";
 
 export const router = createBrowserRouter([
   {
@@ -53,6 +55,16 @@ export const router = createBrowserRouter([
       {
         path: "myListing",
         Component: MyListing,
+      },
+      {
+        path: "updatedRoommate/:id",
+        Component: UpdateRoommate,
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/roommates/${params.id}`),
+      },
+      {
+        path: "*",
+        Component: Error,
       },
     ],
   },

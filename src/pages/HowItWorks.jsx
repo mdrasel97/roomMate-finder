@@ -1,5 +1,6 @@
 import React from "react";
 import { Search, FileText, Users, Check } from "lucide-react";
+import { Fade } from "react-awesome-reveal"; // animation import
 
 const steps = [
   {
@@ -48,20 +49,21 @@ const HowItWorks = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {steps.map((step, index) => (
-            <div
-              key={index}
-              className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 flex flex-col items-center text-center group hover:shadow-md transition-shadow"
-            >
-              <div className="w-16 h-16 rounded-full flex items-center justify-center mb-4 text-white bg-primary">
-                <step.icon className="h-8 w-8" />
+            <Fade direction="up" triggerOnce cascade damping={0.1} key={index}>
+              <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 flex flex-col items-center text-center group hover:shadow-md transition-shadow">
+                <div
+                  className={`w-16 h-16 rounded-full flex items-center justify-center mb-4 text-white ${step.color}`}
+                >
+                  <step.icon className="h-8 w-8" />
+                </div>
+                <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-gray-100 group-hover:text-primary dark:group-hover:text-primary transition-colors">
+                  {step.title}
+                </h3>
+                <p className="text-gray-600 dark:text-gray-400">
+                  {step.description}
+                </p>
               </div>
-              <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-gray-100 group-hover:text-primary dark:group-hover:text-primary transition-colors">
-                {step.title}
-              </h3>
-              <p className="text-gray-600 dark:text-gray-400">
-                {step.description}
-              </p>
-            </div>
+            </Fade>
           ))}
         </div>
       </div>
