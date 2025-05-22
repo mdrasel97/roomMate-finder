@@ -8,7 +8,6 @@ import ThemeToggle from "../Theme/ThemeToggle";
 
 const Navbar = () => {
   const { user, singOutUser } = useContext(AuthContext);
-  // console.log(user);
   const handleLogOut = () => {
     singOutUser()
       .then(() => {
@@ -40,7 +39,7 @@ const Navbar = () => {
   );
 
   return (
-    <nav className="fixed top-0 w-full bg-white shadow z-50">
+    <nav className="fixed top-0 w-full bg-white shadow z-50 lg:container mx-auto">
       <div className="navbar bg-base-100 shadow-sm">
         <div className="navbar-start">
           <div className="dropdown">
@@ -83,7 +82,7 @@ const Navbar = () => {
             </ul>
           </div>
           <div className="flex items-center gap-1 justify-center">
-            <img className="w-6 md:w-9" src={logoImage} alt="" />
+            <img className="w-6 md:w-9 rounded-md" src={logoImage} alt="" />
             {/* <FaHome size={25} color="text-primary" /> */}
             <h2 className="text-xl md:text-3xl font-bold text-primary">
               RomeoMatch

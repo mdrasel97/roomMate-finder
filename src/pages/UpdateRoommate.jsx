@@ -5,7 +5,6 @@ import { AuthContext } from "../Context/AuthContext";
 
 const UpdateRoommate = () => {
   const data = useLoaderData();
-  console.log(data);
   const { user } = useContext(AuthContext);
   const [selectedLifestyle, setSelectedLifestyle] = useState([]);
 
@@ -32,7 +31,7 @@ const UpdateRoommate = () => {
       lifestyle: selectedLifestyle,
     };
 
-    fetch(`http://localhost:3000/roommates/${_id}`, {
+    fetch(`https://roommate-finder-server-mu.vercel.app/roommates/${_id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -46,7 +45,6 @@ const UpdateRoommate = () => {
         return res.json();
       })
       .then((data) => {
-        console.log(data);
         Swal.fire({
           position: "center",
           icon: "success",
@@ -58,7 +56,6 @@ const UpdateRoommate = () => {
         setSelectedLifestyle([]);
       })
       .catch((error) => {
-        console.error("Update Error:", error);
         Swal.fire({
           icon: "error",
           title: "Update Failed",
@@ -84,8 +81,8 @@ const UpdateRoommate = () => {
   const lifestyleOptions = ["Pets", "Smoking", "Night Owl", "Vegetarian"];
   return (
     <div className="w-10/12 mx-auto flex items-center justify-center my-10 mt-20">
-      <div className="border border-primary rounded-md p-10">
-        <h2 className="text-4xl font-semibold mb-5 text-center">
+      <div className="border border-primary rounded-md p-3 md:p-10">
+        <h2 className="text-2xl md:text-4xl font-semibold mb-5 text-center">
           Update Roommate Listing{" "}
         </h2>
 

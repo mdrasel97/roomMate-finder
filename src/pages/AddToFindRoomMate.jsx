@@ -5,7 +5,6 @@ import { AuthContext } from "../Context/AuthContext";
 const AddToFindRoomMate = () => {
   const { user } = useContext(AuthContext);
   const [selectedLifestyle, setSelectedLifestyle] = useState([]);
-  // console.log(user);
   const handleAddFindRoomMate = (e) => {
     e.preventDefault();
 
@@ -13,13 +12,12 @@ const AddToFindRoomMate = () => {
     const formData = new FormData(form);
     const restFormData = Object.fromEntries(formData.entries());
     // data.lifestyle = selectedLifestyle;
-    // console.log(data);
     const userProfile = {
       email: user?.email, // instead of from form
       ...restFormData,
       lifestyle: selectedLifestyle,
     };
-    fetch("http://localhost:3000/roommates", {
+    fetch("https://roommate-finder-server-mu.vercel.app/roommates", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -28,7 +26,7 @@ const AddToFindRoomMate = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         Swal.fire({
           position: "center",
           icon: "success",
@@ -52,12 +50,12 @@ const AddToFindRoomMate = () => {
     }
   };
   return (
-    <div className="w-10/12 mx-auto flex items-center justify-center my-5">
-      <div className="bg-gray-200 p-10">
-        <h2 className="text-4xl font-semibold text-center">
+    <div className="w-10/12 mx-auto flex items-center justify-center my-5 border border-primary mt-20 rounded-md">
+      <div className="md:p-10 p-3">
+        <h2 className="text-2xl md:text-4xl font-semibold text-center">
           Add Roommate Listing{" "}
         </h2>
-        <p className="text-xs text-center w-2/3 mx-auto my-5">
+        <p className="text-xs text-center md:w-2/3 mx-auto my-5">
           It is a long established fact that a reader will be distraceted by the
           readable content of a page when looking at its layout. The point of
           using Lorem Ipsum is that it has a more-or-less normal distribution of
@@ -184,7 +182,7 @@ const AddToFindRoomMate = () => {
               <label className="block font-medium mb-1">User Name</label>
               <input
                 type="text"
-                className="input input-bordered w-full bg-gray-100"
+                className="input input-bordered w-full border"
                 value={user.displayName}
                 readOnly
               />
@@ -193,7 +191,7 @@ const AddToFindRoomMate = () => {
               <label className="block font-medium mb-1">User Email</label>
               <input
                 type="email"
-                className="input input-bordered w-full bg-gray-100"
+                className="input input-bordered w-full border"
                 value={user.email}
                 readOnly
               />

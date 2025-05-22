@@ -5,10 +5,11 @@ import { Link, useLoaderData } from "react-router";
 import Roommate from "./Roommate";
 import { FaArrowRightLong } from "react-icons/fa6";
 import SuccessStory from "./SuccessStory";
+import Review from "./Review";
 
 const Home = () => {
   const roommates = useLoaderData();
-  console.log(roommates);
+  // console.log(roommates);
   return (
     <div>
       <Banner />
@@ -34,6 +35,7 @@ const Home = () => {
       </div>
       <HowItWorks />
       <SuccessStory />
+      <Review />
     </div>
   );
 };

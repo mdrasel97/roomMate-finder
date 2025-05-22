@@ -4,7 +4,7 @@ import Roommate from "./Roommate";
 
 const BrowseListing = () => {
   const roommates = useLoaderData();
-  console.log(roommates);
+  // console.log(roommates);
   return (
     <div className="mt-20 mb-5">
       <div className="grid grid-cols-1 md:grid-cols-3 w-11/12 mx-auto gap-5 mt-10">

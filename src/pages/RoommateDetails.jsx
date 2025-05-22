@@ -1,8 +1,7 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import { useLoaderData } from "react-router";
-import { AuthContext } from "../Context/AuthContext";
-import Loading from "../components/Loading/Loading";
+import { toast } from "react-toastify";
 
 const RoommateDetails = () => {
   const {
@@ -18,28 +17,34 @@ const RoommateDetails = () => {
   } = useLoaderData();
 
   // const { id } = useParams();
-  const { user } = useContext(AuthContext);
+  // const { user } = useContext(AuthContext);
   const [likeCount, setLikeCount] = useState(0);
+  const [showContact, setShowContact] = useState(false);
 
   // handleLike
   const handleLike = async () => {
     try {
-      const res = await fetch(`http://localhost:3000/roommates/${_id}/like`, {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-      });
+      const res = await fetch(
+        `https://roommate-finder-server-mu.vercel.app/roommates/${_id}/like`,
+        {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+        }
+      );
       if (res.ok) {
         setLikeCount((prev) => prev + 1);
+        setShowContact(true);
       }
-    } catch (err) {
-      console.error("Failed to like", err);
+    } catch (error) {
+      // console.error("Failed to like", err);
+      toast.error(error);
     }
   };
 
   useEffect(() => {
-    fetch(`http://localhost:3000/roommates/${_id}`)
+    fetch(`https://roommate-finder-server-mu.vercel.app/roommates/${_id}`)
       .then((res) => res.json())
       .then((data) => setLikeCount(data.likeCount));
   }, [_id]);
@@ -48,11 +53,11 @@ const RoommateDetails = () => {
   //   return <Loading></Loading>;
   // }
   return (
-    <div className="p-6 max-w-2xl mx-auto bg-white rounded shadow">
+    <div className="p-6 max-w-2xl mx-auto border border-primary mt-20 rounded shadow">
       <div className="p-4">
         {/* Like Count Display */}
         <h2 className="text-xl font-semibold mb-4">
-          {likeCount} people interested in
+          {likeCount} interested in people
         </h2>
       </div>
 
@@ -72,9 +77,12 @@ const RoommateDetails = () => {
       <p>
         <strong>Availability:</strong> {availability}
       </p>
-      <p>
-        <strong>Contact:</strong> {contact}
-      </p>
+      {/* Show contact only after like */}
+      {showContact && (
+        <p>
+          <strong>Contact:</strong> {contact}
+        </p>
+      )}
       <p className="mt-4">{description}</p>
 
       {/* <button className="btn btn-primary">Like</button> */}

@@ -29,7 +29,7 @@ const Roommate = ({ roommate }) => {
             className={`badge ${
               availability === "Available"
                 ? "bg-green-500 text-white"
-                : "bg-red-500 text-white"
+                : "bg-red-500 text-xxs text-white"
             }`}
           >
             {availability}

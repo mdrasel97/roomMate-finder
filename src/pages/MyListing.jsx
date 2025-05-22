@@ -4,16 +4,17 @@ import { MdDelete } from "react-icons/md";
 import { FaPenFancy } from "react-icons/fa";
 import Swal from "sweetalert2";
 import { Link } from "react-router";
+import Loading from "../components/Loading/Loading";
 
 const MyListing = () => {
   const { user, setLoading, loading } = useContext(AuthContext);
   const [listings, setListings] = useState([]);
-  console.log(listings);
+  // console.log(listings);
   useEffect(() => {
     const email = user?.email;
     if (!email) return;
 
-    fetch(`http://localhost:3000/my-lists/${email}`)
+    fetch(`https://roommate-finder-server-mu.vercel.app/my-lists/${email}`)
       .then((res) => res.json())
       .then((data) => setListings(data));
     setLoading(false);
@@ -31,7 +32,7 @@ const MyListing = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:3000/roommates/${id}`, {
+        fetch(`https://roommate-finder-server-mu.vercel.app/roommates/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -57,7 +58,9 @@ const MyListing = () => {
         My Listings
       </h2>
       {loading ? (
-        <p>Loading...</p>
+        <p>
+          <Loading />
+        </p>
       ) : listings.length === 0 ? (
         <p>No listings found.</p>
       ) : (
@@ -67,9 +70,9 @@ const MyListing = () => {
             <thead>
               <tr>
                 <th>No.</th>
-                <th>Name</th>
-                <th>Job</th>
-                <th>Favorite Color</th>
+                <th>Title</th>
+                <th>Availability</th>
+                <th>Rent</th>
                 <th></th>
               </tr>
             </thead>
@@ -89,20 +92,21 @@ const MyListing = () => {
                         </div>
                       </div>
                       <div>
-                        <div className="font-bold">Hart Hagerty</div>
-                        <div className="text-sm opacity-50">United States</div>
+                        <div className="font-bold">{item.title}</div>
+                        <div className="text-sm opacity-50">
+                          {item.location}
+                        </div>
                       </div>
                     </div>
                   </td>
                   <td className="">
                     <span className="badge badge-ghost badge-sm">
-                      Zemlak, Daniel and Leannon
-                    </span>
-                    <span className="badge badge-ghost badge-sm">
-                      Desktop Support Technician
+                      {item.availability}
                     </span>
                   </td>
-                  <td>Purple</td>
+                  <td>
+                    <span>$</span> {item.rent}
+                  </td>
                   <th className="space-x-2 flex">
                     <Link
                       to={`/updatedRoommate/${item._id}`}

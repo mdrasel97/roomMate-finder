@@ -15,7 +15,7 @@ const SignUp = () => {
     const { photo, email, password, ...restFormData } = Object.fromEntries(
       formData.entries()
     );
-    console.log(photo, email, password, restFormData);
+
     // Password validation
     // if (password.length < 6) {
     //   setPasswordError("Password must be at least 6 characters long");
@@ -34,7 +34,7 @@ const SignUp = () => {
     createUser(email, password)
       .then((result) => {
         const user = result.user;
-        console.log(user);
+        // console.log(user);
         const userProfile = {
           email,
           photoURL: photo,
@@ -44,7 +44,7 @@ const SignUp = () => {
           lastSignInTime: result.user?.metadata?.lastSignInTime,
         };
 
-        fetch("http://localhost:3000/users", {
+        fetch("https://roommate-finder-server-mu.vercel.app/users", {
           method: "POST",
           headers: {
             "content-type": "application/json",
@@ -72,7 +72,7 @@ const SignUp = () => {
   const handleGoogleSignUp = () => {
     googleSingIn()
       .then((result) => {
-        console.log(result.user);
+        // console.log(result.user);
       })
       .catch((error) => {
         console.log(error);
@@ -80,11 +80,11 @@ const SignUp = () => {
   };
 
   return (
-    <div className="w-full max-w-md p-8 mx-auto my-5 space-y-3 rounded-xl dark:bg-gray-50 dark:text-gray-800">
+    <div className="w-full max-w-md p-8 mx-auto my-5 space-y-3 rounded-xl border border-primary mt-20">
       <h1 className="text-2xl font-bold text-center">Create an Account</h1>
       <form onSubmit={handleSignUp} className="space-y-6">
         <div className="space-y-1 text-sm">
-          <label htmlFor="username" className="block dark:text-gray-600">
+          <label htmlFor="username" className="block">
             Username
           </label>
           <input
@@ -92,11 +92,11 @@ const SignUp = () => {
             name="name"
             id="name"
             placeholder="name"
-            className="w-full px-4 py-3 rounded-md border dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600"
+            className="w-full px-4 py-3 rounded-md border focus:border-primary"
           />
         </div>
         <div className="space-y-1 text-sm">
-          <label htmlFor="username" className="block dark:text-gray-600">
+          <label htmlFor="email" className="block">
             Email
           </label>
           <input
@@ -104,11 +104,11 @@ const SignUp = () => {
             name="email"
             id="email"
             placeholder="jon@duo.com"
-            className="w-full px-4 py-3 rounded-md border dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600"
+            className="w-full px-4 py-3 rounded-md border focus:border-primary"
           />
         </div>
         <div className="space-y-1 text-sm">
-          <label htmlFor="username" className="block dark:text-gray-600">
+          <label htmlFor="photo" className="block">
             Photo URL
           </label>
           <input
@@ -116,11 +116,11 @@ const SignUp = () => {
             name="photo"
             id="photo"
             placeholder="Photo URL"
-            className="w-full px-4 py-3 rounded-md border dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600"
+            className="w-full px-4 py-3 rounded-md border focus:border-primary"
           />
         </div>
         <div className="space-y-1 text-sm">
-          <label htmlFor="password" className="block dark:text-gray-600">
+          <label htmlFor="password" className="block">
             Password
           </label>
           <input
@@ -128,7 +128,7 @@ const SignUp = () => {
             name="password"
             id="password"
             placeholder="Password"
-            className="w-full px-4 py-3 rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 border focus:dark:border-violet-600"
+            className="w-full px-4 py-3 rounded-md border focus:border-primary"
           />
         </div>
         {/* {passwordError && (
@@ -169,12 +169,9 @@ const SignUp = () => {
           className="p-3 rounded-sm"
         ></button>
       </div>
-      <p className="text-xs text-center sm:px-6 dark:text-gray-600">
+      <p className="text-xs text-center sm:px-6">
         Already have an account?
-        <Link
-          to={"/signIn"}
-          className="underline dark:text-gray-800 hover:text-primary"
-        >
+        <Link to={"/signIn"} className="underline hover:text-primary">
           Sign In
         </Link>
       </p>

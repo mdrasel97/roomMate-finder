@@ -17,13 +17,13 @@ const SignIn = () => {
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(email, password);
+    // console.log(email, password);
 
     signInUser(email, password)
       .then((result) => {
         setLoading(false);
         const user = result.user;
-        console.log(user);
+        // console.log(user);
         navigate(from ? from : "/");
         toast.success("Sign In success");
       })
@@ -48,8 +48,9 @@ const SignIn = () => {
     googleSingIn()
       .then((result) => {
         const user = result.user;
-        console.log("User:", user);
+        // console.log("User:", user);
         navigate(from ? from : "/");
+        // navigate(from);
         toast.success("google Sign In success");
       })
       .catch((error) => {
@@ -57,11 +58,11 @@ const SignIn = () => {
       });
   };
   return (
-    <div className="w-full max-w-md p-8 mx-auto my-5 space-y-3 rounded-xl dark:bg-gray-50 dark:text-gray-800">
+    <div className="w-full max-w-md p-8 mx-auto my-5 space-y-3 rounded-xl border border-primary mt-20">
       <h1 className="text-2xl font-bold text-center">Welcome Back</h1>
       <form onSubmit={handleSignIn} className="space-y-6">
         <div className="space-y-1 text-sm">
-          <label htmlFor="email" className="block dark:text-gray-600">
+          <label htmlFor="email" className="block">
             Email
           </label>
           <input
@@ -69,11 +70,11 @@ const SignIn = () => {
             name="email"
             id="email"
             placeholder="jon@duo.com"
-            className="w-full px-4 py-3 rounded-md border dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-primary"
+            className="w-full px-4 py-3 rounded-md border focus:border-primary"
           />
         </div>
         <div className="space-y-1 text-sm">
-          <label htmlFor="password" className="block dark:text-gray-600">
+          <label htmlFor="password" className="block">
             Password
           </label>
           <input
@@ -81,7 +82,7 @@ const SignIn = () => {
             name="password"
             id="password"
             placeholder="Password"
-            className="w-full px-4 py-3 rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 border focus:dark:border-primary"
+            className="w-full px-4 py-3 rounded-md border focus:dark:border-primary"
           />
           <div className="flex justify-end text-xs mt-3 dark:text-gray-600">
             <a rel="noopener noreferrer" href="#">
@@ -112,7 +113,7 @@ const SignIn = () => {
           <FaGithub size={25} />
         </button>
       </div>
-      <p className="text-xs text-center sm:px-6 dark:text-gray-600">
+      <p className="text-xs text-center sm:px-6">
         Don't have an account?
         <Link to={"/signUp"} className="underline hover:text-primary">
           Sign up

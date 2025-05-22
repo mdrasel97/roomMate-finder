@@ -10,6 +10,7 @@ import AddToFindRoomMate from "../pages/AddToFindRoomMate";
 import RoommateDetails from "../pages/RoommateDetails";
 import UpdateRoommate from "../pages/UpdateRoommate";
 import Error from "../components/Error/Error";
+import Loading from "../components/Loading/Loading";
 
 export const router = createBrowserRouter([
   {
@@ -19,12 +20,18 @@ export const router = createBrowserRouter([
       {
         path: "/",
         Component: Home,
-        loader: () => fetch("http://localhost:3000/featured-roommates"),
+        loader: () =>
+          fetch(
+            "https://roommate-finder-server-mu.vercel.app/featured-roommates"
+          ),
+        hydrateFallbackElement: <Loading />,
       },
       {
         path: "browseListing",
         Component: BrowseListing,
-        loader: () => fetch("http://localhost:3000/roommates"),
+        loader: () =>
+          fetch("https://roommate-finder-server-mu.vercel.app/roommates"),
+        hydrateFallbackElement: <Loading />,
       },
       {
         path: "roommateDetails/:id",
@@ -34,7 +41,10 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/roommates/${params.id}`),
+          fetch(
+            `https://roommate-finder-server-mu.vercel.app/roommates/${params.id}`
+          ),
+        hydrateFallbackElement: <Loading />,
       },
       {
         path: "signIn",
@@ -60,7 +70,10 @@ export const router = createBrowserRouter([
         path: "updatedRoommate/:id",
         Component: UpdateRoommate,
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/roommates/${params.id}`),
+          fetch(
+            `https://roommate-finder-server-mu.vercel.app/roommates/${params.id}`
+          ),
+        hydrateFallbackElement: <Loading />,
       },
     ],
   },
