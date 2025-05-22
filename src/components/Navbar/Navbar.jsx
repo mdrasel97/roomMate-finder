@@ -5,10 +5,11 @@ import { AuthContext } from "../../Context/AuthContext";
 import { toast } from "react-toastify";
 import { CgProfile } from "react-icons/cg";
 import logoImage from "../../assets/logo.png";
+import ThemeToggle from "../Theme/ThemeToggle";
 
 const Navbar = () => {
   const { user, singOutUser } = useContext(AuthContext);
-  console.log(user);
+  // console.log(user);
   const handleLogOut = () => {
     singOutUser()
       .then(() => {
@@ -38,6 +39,7 @@ const Navbar = () => {
       )}
     </>
   );
+
   return (
     <nav>
       <div className="navbar bg-base-100 shadow-sm">
@@ -77,6 +79,7 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1">{links}</ul>
         </div>
         <div className="navbar-end gap-3">
+          <ThemeToggle />
           {user ? (
             <div className="md:flex items-center space-x-4">
               <div className="relative group inline-block">
