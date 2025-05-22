@@ -15,7 +15,7 @@ import { AuthContext } from "../../Context/AuthContext";
 const Footer = () => {
   const { user } = useContext(AuthContext);
   return (
-    <footer className="bg-gray-100 pl-5 dark:bg-gray-900 pt-12 pb-8">
+    <footer className="border-t pl-5 pt-12 pb-8">
       <div className="container-custom">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:pl-5">
           {/* Company Info */}
@@ -24,7 +24,7 @@ const Footer = () => {
               <Home className="h-5 w-5 text-primary" />
               <h3 className="text-xl font-bold text-primary">RoomieMatch</h3>
             </div>
-            <p className="text-gray-600 dark:text-gray-400 mb-4">
+            <p className=" mb-4">
               Finding your perfect roommate match has never been easier. Create
               a profile, browse listings, and connect with compatible roommates.
             </p>
@@ -33,7 +33,7 @@ const Footer = () => {
                 href="https://instagram.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-500 hover:text-primary"
+                className=" hover:text-primary"
                 aria-label="Instagram"
               >
                 <Instagram className="h-5 w-5" />
@@ -42,7 +42,7 @@ const Footer = () => {
                 href="https://facebook.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-500 hover:text-primary"
+                className=" hover:text-primary"
                 aria-label="Facebook"
               >
                 <Facebook className="h-5 w-5" />
@@ -51,7 +51,7 @@ const Footer = () => {
                 href="https://twitter.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-500 hover:text-primary"
+                className=" hover:text-primary"
                 aria-label="Twitter"
               >
                 <Twitter className="h-5 w-5" />
@@ -60,7 +60,7 @@ const Footer = () => {
                 href="https://linkedin.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-500 hover:text-primary"
+                className=" hover:text-primary"
                 aria-label="LinkedIn"
               >
                 <Linkedin className="h-5 w-5" />
@@ -70,28 +70,20 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-lg font-semibold mb-4 text-gray-900 dark:text-gray-100">
-              Quick Links
-            </h3>
+            <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-                <NavLink to={"/"} className="text-gray-300 hover:text-primary">
+                <NavLink to={"/"} className="hover:text-primary">
                   Home
                 </NavLink>
               </li>
               <li>
-                <Link
-                  to="/addToFindRoommate"
-                  className="text-gray-300 hover:text-primary"
-                >
+                <Link to="/addToFindRoommate" className="hover:text-primary">
                   Add to Find Roommate
                 </Link>
               </li>
               <li>
-                <Link
-                  to="/browseListing"
-                  className="text-gray-300 hover:text-primary"
-                >
+                <Link to="/browseListing" className="hover:text-primary">
                   Browse Listings
                 </Link>
               </li>
@@ -105,66 +97,46 @@ const Footer = () => {
 
           {/* Contact Info */}
           <div>
-            <h3 className="text-lg font-semibold mb-4 text-gray-900 dark:text-gray-100">
-              Contact Us
-            </h3>
+            <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
             <div className="space-y-3">
               <div className="flex items-start space-x-3">
                 <MapPin className="h-5 w-5 text-primary mt-0.5" />
-                <span className="text-gray-600 dark:text-gray-400">
+                <span className="">
                   123 Roommate Street, Apartment City, AC 12345
                 </span>
               </div>
               <div className="flex items-center space-x-3">
                 <Phone className="h-5 w-5 text-primary" />
-                <span className="text-gray-600 dark:text-gray-400">
-                  (555) 123-4567
-                </span>
+                <span className="">(555) 123-4567</span>
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="h-5 w-5 text-primary" />
-                <span className="text-gray-600 dark:text-gray-400">
-                  support@roomiematch.com
-                </span>
+                <span className="">support@roomiematch.com</span>
               </div>
             </div>
           </div>
 
           {/* Legal Links */}
           <div>
-            <h3 className="text-lg font-semibold mb-4 text-gray-900 dark:text-gray-100">
-              Legal
-            </h3>
+            <h3 className="text-lg font-semibold mb-4">Legal</h3>
             <ul className="space-y-2">
               <li>
-                <a
-                  href="#"
-                  className="text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400"
-                >
+                <a href="#" className="hover:text-primary">
                   Terms of Service
                 </a>
               </li>
               <li>
-                <a
-                  href="#"
-                  className="text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400"
-                >
+                <a href="#" className="hover:text-primary">
                   Privacy Policy
                 </a>
               </li>
               <li>
-                <a
-                  href="#"
-                  className="text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400"
-                >
+                <a href="#" className="hover:text-primary">
                   Cookie Policy
                 </a>
               </li>
               <li>
-                <a
-                  href="#"
-                  className="text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400"
-                >
+                <a href="#" className="hover:text-primary">
                   Refund Policy
                 </a>
               </li>

@@ -31,11 +31,11 @@ const reviews = [
 
 const Review = () => {
   return (
-    <div className="py-10 mx-auto w-2/3 justify-center ">
-      <h2 className="text-3xl font-bold text-center mb-5">
+    <div className="md:py-10 mx-auto md:w-2/3 justify-center ">
+      <h2 className="text-xl text-3xl font-bold text-center md:mb-5">
         What Our Students Say
       </h2>
-      <div className="flex justify-center w-3/6 mx-auto">
+      <div className="flex justify-center w-11/12 md:w-3/6 mx-auto">
         <Swiper
           effect={"coverflow"}
           grabCursor={true}

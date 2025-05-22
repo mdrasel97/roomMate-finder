@@ -23,13 +23,13 @@ const Roommate = ({ roommate }) => {
   return (
     <div className="card bg-base-100 shadow-md border border-primary">
       <div className="card-body">
-        <div className="flex justify-between items-start">
-          <h2 className="card-title">{title}</h2>
+        <div className="flex justify-between items-start w-full">
+          <h2 className="card-title flex-4/6">{title}</h2>
           <span
-            className={`badge ${
+            className={`badge  ${
               availability === "Available"
-                ? "bg-green-500 text-white"
-                : "bg-red-500 text-xxs text-white"
+                ? "bg-green-500 text-[10px] text-white"
+                : "bg-red-500 text-[10px] flex-2/6 object-cover text-white"
             }`}
           >
             {availability}
@@ -61,7 +61,7 @@ const Roommate = ({ roommate }) => {
           <span className="font-semibold">Rent:</span> ${rent}/month
         </p>
 
-        <p className="text-sm text-gray-600 line-clamp-2">{description}</p>
+        <p className="text-sm text-gray-500 line-clamp-2">{description}</p>
 
         <div className="flex items-center mt-4 justify-between">
           <div className="flex items-center gap-2">

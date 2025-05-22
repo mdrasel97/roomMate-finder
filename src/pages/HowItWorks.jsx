@@ -48,7 +48,7 @@ const HowItWorks = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {steps.map((step, index) => (
             <Fade direction="up" triggerOnce cascade damping={0.1} key={index}>
-              <div className=" bg-gray-800 rounded-lg shadow-sm p-6 flex flex-col items-center text-center group hover:shadow-md transition-shadow">
+              <div className=" bg-gray-800 rounded-lg shadow-sm p-6 flex flex-col items-center text-center group hover:shadow-md transition-shadow w-11/12 mx-auto">
                 <div
                   className={`w-16 h-16 rounded-full flex items-center justify-center mb-4 text-white ${step.color}`}
                 >

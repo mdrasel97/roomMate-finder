@@ -4,7 +4,7 @@ import errorImg from "../../assets/errorpage.png";
 
 const Error = () => {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 text-gray-800">
+    <div className="md:min-h-screen mt-10 flex flex-col items-center justify-center bg-gray-100 text-gray-800">
       <img className="w-60" src={errorImg} alt="" />
       {/* <h1 className="text-6xl font-bold mb-4">404</h1> */}
       <p className="text-2xl mb-2">Page Not Found</p>

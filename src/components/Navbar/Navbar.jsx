@@ -85,7 +85,7 @@ const Navbar = () => {
             <img className="w-6 md:w-9 rounded-md" src={logoImage} alt="" />
             {/* <FaHome size={25} color="text-primary" /> */}
             <h2 className="text-xl md:text-3xl font-bold text-primary">
-              RomeoMatch
+              RoomieMatch
             </h2>
           </div>
         </div>

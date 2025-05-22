@@ -7,10 +7,11 @@ import { FaGithub } from "react-icons/fa";
 
 const SignIn = () => {
   const { signInUser, setLoading, googleSingIn } = useContext(AuthContext);
-
   const location = useLocation();
-  const from = location?.state?.from;
   const navigate = useNavigate();
+  // const location = useLocation();
+  // const from = location?.state?.from;
+  // const navigate = useNavigate();
 
   const handleSignIn = (e) => {
     e.preventDefault();
@@ -24,7 +25,8 @@ const SignIn = () => {
         setLoading(false);
         const user = result.user;
         // console.log(user);
-        navigate(from ? from : "/");
+        // navigate(from ? from : "/");
+        navigate(`${location.state ? location.state : "/"}`);
         toast.success("Sign In success");
       })
       .catch((error) => {
