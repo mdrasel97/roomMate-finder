@@ -62,10 +62,10 @@ export const router = createBrowserRouter([
         loader: ({ params }) =>
           fetch(`http://localhost:3000/roommates/${params.id}`),
       },
-      {
-        path: "*",
-        Component: Error,
-      },
     ],
+  },
+  {
+    path: "*",
+    Component: Error,
   },
 ]);

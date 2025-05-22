@@ -28,8 +28,6 @@ const UpdateRoommate = () => {
     const restFormData = Object.fromEntries(formData.entries());
 
     const userProfile = {
-      _id, // Important to include this!
-      email: user?.email,
       ...restFormData,
       lifestyle: selectedLifestyle,
     };
@@ -85,9 +83,9 @@ const UpdateRoommate = () => {
   }, [lifestyle]);
   const lifestyleOptions = ["Pets", "Smoking", "Night Owl", "Vegetarian"];
   return (
-    <div className="w-10/12 mx-auto flex items-center justify-center my-5">
-      <div className="bg-gray-200 p-10">
-        <h2 className="text-4xl font-semibold text-center">
+    <div className="w-10/12 mx-auto flex items-center justify-center my-10 mt-20">
+      <div className="border border-primary rounded-md p-10">
+        <h2 className="text-4xl font-semibold mb-5 text-center">
           Update Roommate Listing{" "}
         </h2>
 
@@ -217,7 +215,7 @@ const UpdateRoommate = () => {
               <label className="block font-medium mb-1">User Name</label>
               <input
                 type="text"
-                className="input input-bordered w-full bg-gray-100"
+                className="input input-bordered w-full border border-primary"
                 value={user.displayName}
                 readOnly
               />
@@ -226,7 +224,7 @@ const UpdateRoommate = () => {
               <label className="block font-medium mb-1">User Email</label>
               <input
                 type="email"
-                className="input input-bordered w-full bg-gray-100"
+                className="input input-bordered w-full border border-primary"
                 value={user.email}
                 readOnly
               />
@@ -236,7 +234,7 @@ const UpdateRoommate = () => {
           {/* Submit Button */}
           <fieldset className="fieldset bg-base-200 border-base-300 rounded-box p-4">
             <button type="submit" className="btn bg-primary text-white">
-              Add Listing
+              Update Listing
             </button>
           </fieldset>
         </form>

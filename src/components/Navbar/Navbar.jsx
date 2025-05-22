@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import { FaHome } from "react-icons/fa";
 import { Link, NavLink } from "react-router";
 import { AuthContext } from "../../Context/AuthContext";
 import { toast } from "react-toastify";
@@ -41,7 +40,7 @@ const Navbar = () => {
   );
 
   return (
-    <nav>
+    <nav className="fixed top-0 w-full bg-white shadow z-50">
       <div className="navbar bg-base-100 shadow-sm">
         <div className="navbar-start">
           <div className="dropdown">
@@ -67,12 +66,28 @@ const Navbar = () => {
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
               {links}
+              {user ? (
+                <button
+                  onClick={handleLogOut}
+                  className="btn btn-primary md:block"
+                >
+                  Log Out
+                </button>
+              ) : (
+                <div className="w-full">
+                  <Link to="/signUp" className="btn btn-primary w-full ">
+                    Sign Up
+                  </Link>
+                </div>
+              )}
             </ul>
           </div>
           <div className="flex items-center gap-1 justify-center">
-            <img className="w-9" src={logoImage} alt="" />
+            <img className="w-6 md:w-9" src={logoImage} alt="" />
             {/* <FaHome size={25} color="text-primary" /> */}
-            <h2 className=" text-3xl font-bold text-primary">RomeoMatch</h2>
+            <h2 className="text-xl md:text-3xl font-bold text-primary">
+              RomeoMatch
+            </h2>
           </div>
         </div>
         <div className="navbar-center hidden lg:flex">
@@ -106,11 +121,13 @@ const Navbar = () => {
               </button>
             </div>
           ) : (
-            <div className="hidden md:flex items-center space-x-3">
-              <Link to="/signIn" className="btn">
-                Login
-              </Link>
-              <div>
+            <div className="md:flex items-center space-x-3">
+              <div className="">
+                <Link to="/signIn" className="btn">
+                  Login
+                </Link>
+              </div>
+              <div className="hidden md:flex">
                 <Link to="/signUp" className="btn btn-primary ">
                   Sign Up
                 </Link>

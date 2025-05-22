@@ -6,8 +6,8 @@ const BrowseListing = () => {
   const roommates = useLoaderData();
   console.log(roommates);
   return (
-    <div>
-      <div className="grid grid-cols-1 md:grid-cols-3">
+    <div className="mt-20 mb-5">
+      <div className="grid grid-cols-1 md:grid-cols-3 w-11/12 mx-auto gap-5 mt-10">
         {roommates.map((roommate) => (
           <Roommate key={roommate._id} roommate={roommate}></Roommate>
         ))}

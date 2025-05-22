@@ -16,7 +16,7 @@ const Home = () => {
         <h2 className="text-3xl text-center font-semibold">
           Featured Roommates
         </h2>
-        <p className="text-center my-5">
+        <p className="text-center mb-5 text-sx">
           Discover our top available roommate listings based on compatibility
           and preferences
         </p>

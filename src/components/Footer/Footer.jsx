@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   Home,
   Mail,
@@ -9,11 +9,13 @@ import {
   Twitter,
   Linkedin,
 } from "lucide-react";
-import { Link } from "react-router";
+import { Link, NavLink } from "react-router";
+import { AuthContext } from "../../Context/AuthContext";
 
 const Footer = () => {
+  const { user } = useContext(AuthContext);
   return (
-    <footer className="bg-gray-100 dark:bg-gray-900 pt-12 pb-8">
+    <footer className="bg-gray-100 pl-5 dark:bg-gray-900 pt-12 pb-8">
       <div className="container-custom">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:pl-5">
           {/* Company Info */}
@@ -31,7 +33,7 @@ const Footer = () => {
                 href="https://instagram.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-500 hover:text-purple-600"
+                className="text-gray-500 hover:text-primary"
                 aria-label="Instagram"
               >
                 <Instagram className="h-5 w-5" />
@@ -40,7 +42,7 @@ const Footer = () => {
                 href="https://facebook.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-500 hover:text-purple-600"
+                className="text-gray-500 hover:text-primary"
                 aria-label="Facebook"
               >
                 <Facebook className="h-5 w-5" />
@@ -49,7 +51,7 @@ const Footer = () => {
                 href="https://twitter.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-500 hover:text-purple-600"
+                className="text-gray-500 hover:text-primary"
                 aria-label="Twitter"
               >
                 <Twitter className="h-5 w-5" />
@@ -58,7 +60,7 @@ const Footer = () => {
                 href="https://linkedin.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-500 hover:text-purple-600"
+                className="text-gray-500 hover:text-primary"
                 aria-label="LinkedIn"
               >
                 <Linkedin className="h-5 w-5" />
@@ -73,37 +75,31 @@ const Footer = () => {
             </h3>
             <ul className="space-y-2">
               <li>
-                <Link
-                  to="/"
-                  className="text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400"
-                >
+                <NavLink to={"/"} className="text-gray-300 hover:text-primary">
                   Home
-                </Link>
+                </NavLink>
               </li>
               <li>
                 <Link
-                  to="/add-roommate"
-                  className="text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400"
+                  to="/addToFindRoommate"
+                  className="text-gray-300 hover:text-primary"
                 >
                   Add to Find Roommate
                 </Link>
               </li>
               <li>
                 <Link
-                  to="/browse-listings"
-                  className="text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400"
+                  to="/browseListing"
+                  className="text-gray-300 hover:text-primary"
                 >
                   Browse Listings
                 </Link>
               </li>
-              <li>
-                <Link
-                  to="/my-listings"
-                  className="text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400"
-                >
-                  My Listings
-                </Link>
-              </li>
+              {user && (
+                <li>
+                  <NavLink to={"/myListing"}>My Listings </NavLink>
+                </li>
+              )}
             </ul>
           </div>
 
@@ -114,19 +110,19 @@ const Footer = () => {
             </h3>
             <div className="space-y-3">
               <div className="flex items-start space-x-3">
-                <MapPin className="h-5 w-5 text-purple-600 mt-0.5" />
+                <MapPin className="h-5 w-5 text-primary mt-0.5" />
                 <span className="text-gray-600 dark:text-gray-400">
                   123 Roommate Street, Apartment City, AC 12345
                 </span>
               </div>
               <div className="flex items-center space-x-3">
-                <Phone className="h-5 w-5 text-purple-600" />
+                <Phone className="h-5 w-5 text-primary" />
                 <span className="text-gray-600 dark:text-gray-400">
                   (555) 123-4567
                 </span>
               </div>
               <div className="flex items-center space-x-3">
-                <Mail className="h-5 w-5 text-purple-600" />
+                <Mail className="h-5 w-5 text-primary" />
                 <span className="text-gray-600 dark:text-gray-400">
                   support@roomiematch.com
                 </span>

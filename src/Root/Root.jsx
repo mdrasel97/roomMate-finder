@@ -14,7 +14,7 @@ const Root = () => {
   return (
     <div className="lg:container mx-auto">
       <Navbar />
-      <div className="min-h-screen">
+      <div className="min-h-screen mt-16">
         <Outlet />
       </div>
       <Footer />

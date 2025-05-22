@@ -53,13 +53,15 @@ const MyListing = () => {
   };
   return (
     <div className="p-4">
-      <h2 className="text-xl font-semibold mb-4">My Listings</h2>
+      <h2 className="text-xl font-semibold mb-4 w-11/12 mx-auto">
+        My Listings
+      </h2>
       {loading ? (
         <p>Loading...</p>
       ) : listings.length === 0 ? (
         <p>No listings found.</p>
       ) : (
-        <div className="w-10/12 mx-auto">
+        <div className="w-10/12 mx-auto overflow-x-auto">
           <table className="table">
             {/* head */}
             <thead>
@@ -92,15 +94,16 @@ const MyListing = () => {
                       </div>
                     </div>
                   </td>
-                  <td>
-                    Zemlak, Daniel and Leannon
-                    <br />
+                  <td className="">
+                    <span className="badge badge-ghost badge-sm">
+                      Zemlak, Daniel and Leannon
+                    </span>
                     <span className="badge badge-ghost badge-sm">
                       Desktop Support Technician
                     </span>
                   </td>
                   <td>Purple</td>
-                  <th className="space-x-2">
+                  <th className="space-x-2 flex">
                     <Link
                       to={`/updatedRoommate/${item._id}`}
                       className="btn btn-primary"

@@ -57,9 +57,7 @@ const SuccessStory = () => {
     <section className="py-16">
       <div className="container-custom">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-2">
-            Success Stories
-          </h2>
+          <h2 className="text-3xl font-bold mb-2">Success Stories</h2>
           <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
             Hear from users who found their perfect roommate match through our
             platform
@@ -94,13 +92,13 @@ const SuccessStory = () => {
                 onClick={prevSlide}
                 className="p-2 rounded-full border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-800"
               >
-                <FaChevronLeft />
+                <FaChevronLeft color="white" />
               </button>
               <button
                 onClick={nextSlide}
                 className="p-2 rounded-full border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-800"
               >
-                <FaChevronRight />
+                <FaChevronRight color="white" />
               </button>
             </div>
           </div>
