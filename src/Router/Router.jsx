@@ -64,11 +64,19 @@ export const router = createBrowserRouter([
       },
       {
         path: "myListing",
-        Component: MyListing,
+        element: (
+          <PrivateRoute>
+            <MyListing />
+          </PrivateRoute>
+        ),
       },
       {
         path: "updatedRoommate/:id",
-        Component: UpdateRoommate,
+        element: (
+          <PrivateRoute>
+            <UpdateRoommate />
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
           fetch(
             `https://roommate-finder-server-mu.vercel.app/roommates/${params.id}`

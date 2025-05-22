@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router";
 import errorImg from "../../assets/errorpage.png";
 
 const Error = () => {
+  useEffect(() => {
+    document.title = "Error || RomeoMatch";
+  }, []);
   return (
     <div className="md:min-h-screen mt-10 flex flex-col items-center justify-center bg-gray-100 text-gray-800">
       <img className="w-60" src={errorImg} alt="" />

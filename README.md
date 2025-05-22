@@ -135,22 +135,15 @@ A full-stack web platform that helps individuals find compatible roommates based
 - **Libraries**:
   - `react-lottie`
   - `react-simple-typewriter`
-  - `react-awesome-reveal`
   - `react-tooltip`
   - `react-toastify` or `sweetalert2` for alerts
-
----
-
-## 📸 Screenshots
-
-> _Add screenshots here showcasing key features like Home Page, Add Listing, Protected Routes, etc._
 
 ---
 
 ## 📦 Setup Instructions
 
 ```bash
-git clone https://github.com/your-username/roommate-finder.git
+git clone https://github.com/Programming-Hero-Web-Course4/b11a10-client-side-mdrasel97
 cd roommate-finder
 npm install
 npm run dev

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../../Context/AuthContext";
 import { toast } from "react-toastify";
@@ -9,9 +9,14 @@ const SignIn = () => {
   const { signInUser, setLoading, googleSingIn } = useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
+
   // const location = useLocation();
   // const from = location?.state?.from;
   // const navigate = useNavigate();
+
+  useEffect(() => {
+    document.title = "SignIn || RomeoMatch";
+  }, []);
 
   const handleSignIn = (e) => {
     e.preventDefault();

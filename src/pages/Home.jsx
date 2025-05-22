@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Banner from "./Banner";
 import HowItWorks from "./HowItWorks";
 import { Link, useLoaderData } from "react-router";
@@ -10,6 +10,9 @@ import Review from "./Review";
 const Home = () => {
   const roommates = useLoaderData();
   // console.log(roommates);
+  useEffect(() => {
+    document.title = "Home || RomeoMatch";
+  }, []);
   return (
     <div>
       <Banner />

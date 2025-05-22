@@ -8,6 +8,9 @@ const UpdateRoommate = () => {
   const { user } = useContext(AuthContext);
   const [selectedLifestyle, setSelectedLifestyle] = useState([]);
 
+  useEffect(() => {
+    document.title = "Update Roommate || RomeoMatch";
+  }, []);
   const {
     _id,
     title,

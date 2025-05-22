@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router";
 import { AuthContext } from "../../Context/AuthContext";
 import Swal from "sweetalert2";
@@ -8,6 +8,9 @@ import { FcGoogle } from "react-icons/fc";
 const SignUp = () => {
   const { createUser, googleSingIn } = useContext(AuthContext);
   // const [passwordError, setPasswordError] = useState("");
+  useEffect(() => {
+    document.title = "signUp || RomeoMatch";
+  }, []);
   const handleSignUp = (e) => {
     e.preventDefault();
     const form = e.target;
