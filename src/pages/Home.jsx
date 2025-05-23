@@ -4,8 +4,9 @@ import HowItWorks from "./HowItWorks";
 import { Link, useLoaderData } from "react-router";
 import Roommate from "./Roommate";
 import { FaArrowRightLong } from "react-icons/fa6";
-import SuccessStory from "./SuccessStory";
 import Review from "./Review";
+import Testimonials from "./Testimonials";
+import RoomGallery from "./RoomGallery";
 
 const Home = () => {
   const roommates = useLoaderData();
@@ -37,7 +38,8 @@ const Home = () => {
         </div>
       </div>
       <HowItWorks />
-      <SuccessStory />
+      <Testimonials />
+      <RoomGallery />
       <Review />
     </div>
   );

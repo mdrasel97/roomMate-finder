@@ -89,7 +89,9 @@ const Footer = () => {
               </li>
               {user && (
                 <li>
-                  <NavLink to={"/myListing"}>My Listings </NavLink>
+                  <NavLink to={"/myListing"} className="hover:text-primary">
+                    My Listings{" "}
+                  </NavLink>
                 </li>
               )}
             </ul>
