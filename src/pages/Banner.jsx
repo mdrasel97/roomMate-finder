@@ -17,9 +17,9 @@ const Banner = () => {
       subtitle:
         "Connect with compatible roommates based on lifestyle, budget, and location preferences",
       image:
-        "https://images.unsplash.com/photo-1556912172-45b7abe8b7e1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+        "https://i.ibb.co/xKzSWykB/682b5d8d9aa44d3871f2a188-d0fae16e-4070-43f5-909b-515558c3a90c.jpg",
       buttonText: "Browse Listings",
-      buttonLink: "/browse-listings",
+      buttonLink: "/browseListing",
     },
     {
       id: 2,
@@ -29,7 +29,7 @@ const Banner = () => {
       image:
         "https://images.unsplash.com/photo-1600585152220-90363fe7e115?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
       buttonText: "Create Listing",
-      buttonLink: "/add-roommate",
+      buttonLink: "/addToFindRoommate",
     },
     {
       id: 3,
@@ -84,7 +84,6 @@ const Banner = () => {
                 {slide.subtitle}
               </p>
               <button
-                // asChild
                 className="btn animate-fade-in"
                 style={{ animationDelay: "0.4s" }}
               >

@@ -1,74 +1,134 @@
 import React, { useContext, useEffect } from "react";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../../Context/AuthContext";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 import { FcGoogle } from "react-icons/fc";
+import { updateProfile } from "firebase/auth";
 
 const SignUp = () => {
   const { createUser, googleSingIn } = useContext(AuthContext);
   // const [passwordError, setPasswordError] = useState("");
+  const navigate = useNavigate();
+  const location = useLocation();
   useEffect(() => {
     document.title = "signUp || RomeoMatch";
   }, []);
+  // const handleSignUp = (e) => {
+  //   e.preventDefault();
+  //   const form = e.target;
+  //   const formData = new FormData(form);
+  //   const { photo, email, password, ...restFormData } = Object.fromEntries(
+  //     formData.entries()
+  //   );
+
+  //   // Password validation
+  //   // if (password.length < 6) {
+  //   //   setPasswordError("Password must be at least 6 characters long");
+  //   //   return;
+  //   // }
+  //   // if (!/[A-Z]/.test(password)) {
+  //   //   setPasswordError("Password must contain at least one uppercase letter");
+  //   //   return;
+  //   // }
+  //   // if (!/[a-z]/.test(password)) {
+  //   //   setPasswordError("Password must contain at least one lowercase letter");
+  //   //   return;
+  //   // }
+
+  //   // create user
+  //   createUser(email, password)
+  //     .then((result) => {
+  //       const user = result.user;
+  //       console.log(user);
+  //       const userProfile = {
+  //         email,
+  //         photoURL: photo,
+  //         ...restFormData,
+
+  //         creationTime: user?.metadata?.creationTime,
+  //         lastSignInTime: user?.metadata?.lastSignInTime,
+  //       };
+
+  //       fetch("https://roommate-finder-server-mu.vercel.app/users", {
+  //         method: "POST",
+  //         headers: {
+  //           "content-type": "application/json",
+  //         },
+  //         body: JSON.stringify(userProfile),
+  //       })
+  //         .then((res) => res.json())
+  //         .then((data) => {
+  //           if (data.insertedId) {
+  //             Swal.fire({
+  //               position: "center",
+  //               icon: "success",
+  //               title: "Your Account Is Created",
+  //               showConfirmButton: false,
+  //               timer: 1500,
+  //             });
+  //           }
+  //         });
+  //     })
+  //     .catch((error) => {
+  //       toast.error("Registration failed!", error);
+  //     });
+  // };
+
   const handleSignUp = (e) => {
     e.preventDefault();
     const form = e.target;
     const formData = new FormData(form);
-    const { photo, email, password, ...restFormData } = Object.fromEntries(
-      formData.entries()
-    );
+    const { photo, email, password, name, ...restFormData } =
+      Object.fromEntries(formData.entries());
 
-    // Password validation
-    // if (password.length < 6) {
-    //   setPasswordError("Password must be at least 6 characters long");
-    //   return;
-    // }
-    // if (!/[A-Z]/.test(password)) {
-    //   setPasswordError("Password must contain at least one uppercase letter");
-    //   return;
-    // }
-    // if (!/[a-z]/.test(password)) {
-    //   setPasswordError("Password must contain at least one lowercase letter");
-    //   return;
-    // }
-
-    // create user
     createUser(email, password)
       .then((result) => {
         const user = result.user;
-        // console.log(user);
+
+        // 🔧 Firebase profile update
+        return updateProfile(user, {
+          displayName: name,
+          photoURL: photo,
+        }).then(() => user);
+      })
+      .then((user) => {
+        console.log("User with profile:", user);
+
         const userProfile = {
           email,
           photoURL: photo,
+          name,
           ...restFormData,
-
-          creationTime: result.user?.metadata?.creationTime,
-          lastSignInTime: result.user?.metadata?.lastSignInTime,
+          creationTime: user?.metadata?.creationTime,
+          lastSignInTime: user?.metadata?.lastSignInTime,
         };
 
-        fetch("https://roommate-finder-server-mu.vercel.app/users", {
+        // 🔄 Save to your database
+        return fetch("https://roommate-finder-server-mu.vercel.app/users", {
           method: "POST",
           headers: {
             "content-type": "application/json",
           },
           body: JSON.stringify(userProfile),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            if (data.insertedId) {
-              Swal.fire({
-                position: "center",
-                icon: "success",
-                title: "Your Account Is Created",
-                showConfirmButton: false,
-                timer: 1500,
-              });
-            }
+        });
+      })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.insertedId) {
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Your Account Is Created",
+            showConfirmButton: false,
+            timer: 1500,
           });
+          navigate(`${location.state ? location.state : "/"}`);
+        }
       })
       .catch((error) => {
-        toast.error("Registration failed!", error);
+        console.error("Registration error:", error);
+        toast.error("Registration failed!");
       });
   };
 
@@ -76,6 +136,7 @@ const SignUp = () => {
     googleSingIn()
       .then((result) => {
         // console.log(result.user);
+        navigate(`${location.state ? location.state : "/"}`);
       })
       .catch((error) => {
         console.log(error);

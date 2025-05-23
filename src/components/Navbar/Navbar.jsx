@@ -5,9 +5,11 @@ import { toast } from "react-toastify";
 import { CgProfile } from "react-icons/cg";
 import logoImage from "../../assets/logo.png";
 import ThemeToggle from "../Theme/ThemeToggle";
+import { Typewriter } from "react-simple-typewriter";
 
 const Navbar = () => {
   const { user, singOutUser } = useContext(AuthContext);
+  // const navigate = useNavigate();
   const handleLogOut = () => {
     singOutUser()
       .then(() => {
@@ -18,6 +20,11 @@ const Navbar = () => {
         toast.error(error.message);
       });
   };
+
+  // update profile
+  // const handleProfileClick = () => {
+  //   navigate("/profile");
+  // };
   const links = (
     <>
       <li>
@@ -83,9 +90,16 @@ const Navbar = () => {
           </div>
           <div className="flex items-center gap-1 justify-center">
             <img className="w-6 md:w-9 rounded-md" src={logoImage} alt="" />
-            {/* <FaHome size={25} color="text-primary" /> */}
-            <h2 className="text-xl md:text-3xl font-bold text-primary">
-              RoomieMatch
+            <h2 className="text-lg md:text-3xl font-bold text-primary">
+              <Typewriter
+                words={["RoomieMatch", "RoommateFinder"]}
+                loop={0}
+                // cursor
+                // cursorStyle="_"
+                typeSpeed={70}
+                deleteSpeed={50}
+                delaySpeed={1000}
+              />
             </h2>
           </div>
         </div>
@@ -122,7 +136,7 @@ const Navbar = () => {
           ) : (
             <div className="md:flex items-center space-x-3">
               <div className="">
-                <Link to="/signIn" className="btn">
+                <Link to="/signIn" className="btn border border-primary">
                   Login
                 </Link>
               </div>

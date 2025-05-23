@@ -5,6 +5,7 @@ import { FaPenFancy } from "react-icons/fa";
 import Swal from "sweetalert2";
 import { Link } from "react-router";
 import Loading from "../components/Loading/Loading";
+import { toast } from "react-toastify";
 
 const MyListing = () => {
   const { user, setLoading, loading } = useContext(AuthContext);
@@ -16,11 +17,18 @@ const MyListing = () => {
   useEffect(() => {
     const email = user?.email;
     if (!email) return;
+    // setLoading(true);
 
     fetch(`https://roommate-finder-server-mu.vercel.app/my-lists/${email}`)
       .then((res) => res.json())
-      .then((data) => setListings(data));
-    setLoading(false);
+      .then((data) => {
+        setListings(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        toast.error(error);
+        setLoading(false);
+      });
   }, [user, setLoading]);
 
   const handleDelete = (id) => {

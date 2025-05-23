@@ -6,13 +6,9 @@ import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 
 const SignIn = () => {
-  const { signInUser, setLoading, googleSingIn } = useContext(AuthContext);
-  const location = useLocation();
   const navigate = useNavigate();
-
-  // const location = useLocation();
-  // const from = location?.state?.from;
-  // const navigate = useNavigate();
+  const location = useLocation();
+  const { signInUser, setLoading, googleSingIn } = useContext(AuthContext);
 
   useEffect(() => {
     document.title = "SignIn || RomeoMatch";
@@ -29,10 +25,8 @@ const SignIn = () => {
       .then((result) => {
         setLoading(false);
         const user = result.user;
-        // console.log(user);
-        // navigate(from ? from : "/");
-        navigate(`${location.state ? location.state : "/"}`);
         toast.success("Sign In success");
+        navigate(`${location.state ? location.state : "/"}`);
       })
       .catch((error) => {
         setLoading(false);
@@ -55,10 +49,8 @@ const SignIn = () => {
     googleSingIn()
       .then((result) => {
         const user = result.user;
-        // console.log("User:", user);
-        navigate(from ? from : "/");
-        // navigate(from);
         toast.success("google Sign In success");
+        navigate(`${location.state ? location.state : "/"}`);
       })
       .catch((error) => {
         console.error(error);

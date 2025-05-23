@@ -35,6 +35,22 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     return signOut(auth);
   };
+
+  // update profile
+  // const updateProfileUser = (name, photoUrl) => {
+  //   updateProfile(auth.currentUser, {
+  //     displayName: name,
+  //     photoURL: photoUrl,
+  //   })
+  //     .then(() => {
+  //       setUser({ ...user, displayName: name, photoURL: photoUrl });
+  //       toast.success("profile updated");
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // };
+
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       if (currentUser) {

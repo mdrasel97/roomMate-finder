@@ -1,10 +1,9 @@
-import React, { useContext } from "react";
+import React from "react";
 import { AuthContext } from "../Context/AuthContext";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { Link } from "react-router";
 
 const Roommate = ({ roommate }) => {
-  const { user } = useContext(AuthContext);
   const {
     _id,
     title,
@@ -14,7 +13,12 @@ const Roommate = ({ roommate }) => {
     availability,
     lifestyle,
     description,
+    name,
+    photoURL,
   } = roommate;
+  // useEffect(() => {
+  //   fetch();
+  // }, []);
   const safeLifestyle = Array.isArray(lifestyle)
     ? lifestyle
     : lifestyle
@@ -66,11 +70,12 @@ const Roommate = ({ roommate }) => {
         <div className="flex items-center mt-4 justify-between">
           <div className="flex items-center gap-2">
             <img
-              src={user?.photoURL || "https://i.pravatar.cc/40"}
-              alt={user?.displayName}
+              src={photoURL}
+              alt={name}
+              // || "https://i.pravatar.cc/40"
               className="w-8 h-8 rounded-full"
             />
-            <span className="text-sm">{user?.displayName}</span>
+            <span className="text-sm">{name}</span>
           </div>
 
           <Link to={`/roommateDetails/${_id}`}>

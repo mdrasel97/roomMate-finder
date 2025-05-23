@@ -1,9 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { AuthContext } from "../Context/AuthContext";
+import { useLocation, useNavigate } from "react-router";
 
 const AddToFindRoomMate = () => {
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
   const [selectedLifestyle, setSelectedLifestyle] = useState([]);
   useEffect(() => {
     document.title = "Add Roommate || RomeoMatch";
@@ -16,7 +19,9 @@ const AddToFindRoomMate = () => {
     const restFormData = Object.fromEntries(formData.entries());
     // data.lifestyle = selectedLifestyle;
     const userProfile = {
-      email: user?.email, // instead of from form
+      email: user?.email,
+      name: user?.displayName,
+      photoURL: user?.photoURL,
       ...restFormData,
       lifestyle: selectedLifestyle,
     };
@@ -39,6 +44,7 @@ const AddToFindRoomMate = () => {
         });
         form.reset();
         setSelectedLifestyle([]);
+        navigate(`${location.state ? location.state : "/browseListing"}`);
       });
   };
 

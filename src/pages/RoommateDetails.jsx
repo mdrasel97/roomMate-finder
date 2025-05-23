@@ -1,9 +1,11 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import { useLoaderData } from "react-router";
 import { toast } from "react-toastify";
+import { AuthContext } from "../Context/AuthContext";
 
 const RoommateDetails = () => {
+  const { user } = useContext(AuthContext);
   const {
     _id,
     title,
@@ -14,6 +16,7 @@ const RoommateDetails = () => {
     lifestyle,
     contact,
     description,
+    email,
   } = useLoaderData();
 
   // const { id } = useParams();
@@ -34,7 +37,8 @@ const RoommateDetails = () => {
         }
       );
       if (res.ok) {
-        setLikeCount((prev) => prev + 1);
+        // setLikeCount((prev) => prev + 1);
+        setLikeCount((prev) => (typeof prev === "number" ? prev + 1 : 1));
         setShowContact(true);
       }
     } catch (error) {
@@ -88,7 +92,12 @@ const RoommateDetails = () => {
       {/* <button className="btn btn-primary">Like</button> */}
       <button
         onClick={handleLike}
-        className="bg-primary text-white px-4 py-2 rounded hover:bg-secondary"
+        className={`px-4 py-2 rounded text-white ${
+          user.email === email
+            ? "bg-gray-400 cursor-not-allowed"
+            : "bg-primary hover:bg-secondary"
+        }`}
+        disabled={user.email === email}
       >
         👍 Like
       </button>
