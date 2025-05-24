@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../../Context/AuthContext";
 import Swal from "sweetalert2";
@@ -8,7 +8,7 @@ import { updateProfile } from "firebase/auth";
 
 const SignUp = () => {
   const { createUser, googleSingIn } = useContext(AuthContext);
-  // const [passwordError, setPasswordError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
   useEffect(() => {
@@ -82,6 +82,20 @@ const SignUp = () => {
     const { photo, email, password, name, ...restFormData } =
       Object.fromEntries(formData.entries());
 
+    // Password validation
+    if (password.length < 6) {
+      setPasswordError("Password must be at least 6 characters long");
+      return;
+    }
+    if (!/[A-Z]/.test(password)) {
+      setPasswordError("Password must contain at least one uppercase letter");
+      return;
+    }
+    if (!/[a-z]/.test(password)) {
+      setPasswordError("Password must contain at least one lowercase letter");
+      return;
+    }
+
     createUser(email, password)
       .then((result) => {
         const user = result.user;
@@ -104,7 +118,7 @@ const SignUp = () => {
           lastSignInTime: user?.metadata?.lastSignInTime,
         };
 
-        // 🔄 Save to your database
+        //  Save to my database
         return fetch("https://roommate-finder-server-mu.vercel.app/users", {
           method: "POST",
           headers: {
@@ -136,10 +150,17 @@ const SignUp = () => {
     googleSingIn()
       .then((result) => {
         // console.log(result.user);
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Your Account Is Created",
+          showConfirmButton: false,
+          timer: 1500,
+        });
         navigate(`${location.state ? location.state : "/"}`);
       })
       .catch((error) => {
-        console.log(error);
+        toast.error(error);
       });
   };
 
@@ -195,14 +216,14 @@ const SignUp = () => {
             className="w-full px-4 py-3 rounded-md border focus:border-primary"
           />
         </div>
-        {/* {passwordError && (
+        {passwordError && (
           <div className="text-red-500 text-sm">{passwordError}</div>
         )}
 
         <div className="text-xs text-gray-600">
           Password must contain at least 6 characters, including one uppercase
           and one lowercase letter and one number.
-        </div> */}
+        </div>
         <button className="block w-full p-3 text-center rounded-sm dark:text-gray-50 dark:bg-primary">
           Sign Up
         </button>
