@@ -8,7 +8,7 @@ import Loading from "../components/Loading/Loading";
 import { toast } from "react-toastify";
 
 const MyListing = () => {
-  const { user, setLoading, loading } = useContext(AuthContext);
+  const { user, loading } = useContext(AuthContext);
   const [listingLoading, setListingLoading] = useState(false);
   const [listings, setListings] = useState([]);
   // console.log(listings);
@@ -72,11 +72,7 @@ const MyListing = () => {
       <h2 className="text-xl font-semibold mb-4 w-11/12 mx-auto">
         My Listings
       </h2>
-      {listingLoading && (
-        <p>
-          <Loading />
-        </p>
-      )}
+      {listingLoading && <Loading />}
       {loading ? (
         <p>
           <Loading />

@@ -38,7 +38,7 @@ const AddToFindRoomMate = () => {
         Swal.fire({
           position: "center",
           icon: "success",
-          title: "Your Account Is Created",
+          title: "Your Roommate Post Is Created",
           showConfirmButton: false,
           timer: 1500,
         });
