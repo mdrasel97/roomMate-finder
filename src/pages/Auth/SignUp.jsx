@@ -14,66 +14,6 @@ const SignUp = () => {
   useEffect(() => {
     document.title = "signUp || RomeoMatch";
   }, []);
-  // const handleSignUp = (e) => {
-  //   e.preventDefault();
-  //   const form = e.target;
-  //   const formData = new FormData(form);
-  //   const { photo, email, password, ...restFormData } = Object.fromEntries(
-  //     formData.entries()
-  //   );
-
-  //   // Password validation
-  //   // if (password.length < 6) {
-  //   //   setPasswordError("Password must be at least 6 characters long");
-  //   //   return;
-  //   // }
-  //   // if (!/[A-Z]/.test(password)) {
-  //   //   setPasswordError("Password must contain at least one uppercase letter");
-  //   //   return;
-  //   // }
-  //   // if (!/[a-z]/.test(password)) {
-  //   //   setPasswordError("Password must contain at least one lowercase letter");
-  //   //   return;
-  //   // }
-
-  //   // create user
-  //   createUser(email, password)
-  //     .then((result) => {
-  //       const user = result.user;
-  //       console.log(user);
-  //       const userProfile = {
-  //         email,
-  //         photoURL: photo,
-  //         ...restFormData,
-
-  //         creationTime: user?.metadata?.creationTime,
-  //         lastSignInTime: user?.metadata?.lastSignInTime,
-  //       };
-
-  //       fetch("https://roommate-finder-server-mu.vercel.app/users", {
-  //         method: "POST",
-  //         headers: {
-  //           "content-type": "application/json",
-  //         },
-  //         body: JSON.stringify(userProfile),
-  //       })
-  //         .then((res) => res.json())
-  //         .then((data) => {
-  //           if (data.insertedId) {
-  //             Swal.fire({
-  //               position: "center",
-  //               icon: "success",
-  //               title: "Your Account Is Created",
-  //               showConfirmButton: false,
-  //               timer: 1500,
-  //             });
-  //           }
-  //         });
-  //     })
-  //     .catch((error) => {
-  //       toast.error("Registration failed!", error);
-  //     });
-  // };
 
   const handleSignUp = (e) => {
     e.preventDefault();
@@ -100,7 +40,7 @@ const SignUp = () => {
       .then((result) => {
         const user = result.user;
 
-        // 🔧 Firebase profile update
+        // Firebase profile update
         return updateProfile(user, {
           displayName: name,
           photoURL: photo,

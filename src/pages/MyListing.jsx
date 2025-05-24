@@ -9,6 +9,7 @@ import { toast } from "react-toastify";
 
 const MyListing = () => {
   const { user, setLoading, loading } = useContext(AuthContext);
+  const [listingLoading, setListingLoading] = useState(false);
   const [listings, setListings] = useState([]);
   // console.log(listings);
   useEffect(() => {
@@ -18,18 +19,21 @@ const MyListing = () => {
     const email = user?.email;
     if (!email) return;
     // setLoading(true);
+    setListingLoading(true);
 
     fetch(`https://roommate-finder-server-mu.vercel.app/my-lists/${email}`)
       .then((res) => res.json())
       .then((data) => {
         setListings(data);
-        setLoading(false);
+        // setLoading(false);
+        setListingLoading(false);
       })
       .catch((error) => {
         toast.error(error);
-        setLoading(false);
+        // setLoading(false);
+        setListingLoading(false);
       });
-  }, [user, setLoading]);
+  }, [user, setListingLoading]);
 
   const handleDelete = (id) => {
     // console.log(id);
@@ -68,6 +72,11 @@ const MyListing = () => {
       <h2 className="text-xl font-semibold mb-4 w-11/12 mx-auto">
         My Listings
       </h2>
+      {listingLoading && (
+        <p>
+          <Loading />
+        </p>
+      )}
       {loading ? (
         <p>
           <Loading />

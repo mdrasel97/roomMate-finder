@@ -39,7 +39,7 @@ const Footer = () => {
                 <Instagram className="h-5 w-5" />
               </a>
               <a
-                href="https://facebook.com"
+                href="https://web.facebook.com/mollarasel24/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className=" hover:text-primary"

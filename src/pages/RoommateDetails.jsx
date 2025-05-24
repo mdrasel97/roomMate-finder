@@ -5,6 +5,9 @@ import { toast } from "react-toastify";
 import { AuthContext } from "../Context/AuthContext";
 
 const RoommateDetails = () => {
+  useEffect(() => {
+    document.title = "view details || RomeoMatch";
+  }, []);
   const { user } = useContext(AuthContext);
   const {
     _id,
@@ -18,8 +21,6 @@ const RoommateDetails = () => {
     description,
     email,
   } = useLoaderData();
-
-  // const { id } = useParams();
   // const { user } = useContext(AuthContext);
   const [likeCount, setLikeCount] = useState(0);
   const [showContact, setShowContact] = useState(false);
@@ -88,8 +89,6 @@ const RoommateDetails = () => {
         </p>
       )}
       <p className="mt-4">{description}</p>
-
-      {/* <button className="btn btn-primary">Like</button> */}
       <button
         onClick={handleLike}
         className={`px-4 py-2 rounded text-white ${

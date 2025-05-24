@@ -32,7 +32,7 @@ const reviews = [
 const Review = () => {
   return (
     <div className="md:py-10 mx-auto md:w-2/3 justify-center ">
-      <h2 className="text-xl text-3xl font-bold text-center md:mb-5">
+      <h2 className="text-xl md:text-3xl font-bold text-center md:mb-5">
         What Our Students Say
       </h2>
       <div className="flex justify-center w-11/12 md:w-8/12 mx-auto">
