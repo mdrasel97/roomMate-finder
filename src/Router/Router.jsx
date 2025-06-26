@@ -11,6 +11,7 @@ import RoommateDetails from "../pages/RoommateDetails";
 import UpdateRoommate from "../pages/UpdateRoommate";
 import Error from "../components/Error/Error";
 import Loading from "../components/Loading/Loading";
+import About from "../pages/about/About";
 
 export const router = createBrowserRouter([
   {
@@ -45,6 +46,10 @@ export const router = createBrowserRouter([
             `https://roommate-finder-server-mu.vercel.app/roommates/${params.id}`
           ),
         hydrateFallbackElement: <Loading />,
+      },
+      {
+        path: "about",
+        Component: About,
       },
       {
         path: "signIn",

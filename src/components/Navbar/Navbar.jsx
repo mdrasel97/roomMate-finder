@@ -31,17 +31,22 @@ const Navbar = () => {
         <NavLink to={"/"}>Home</NavLink>
       </li>
       <li>
-        <NavLink to={"/addToFindRoomMate"}>Add To Find Roommate</NavLink>
-      </li>
-      <li>
         <NavLink to={"/browseListing"}>Browse Listing</NavLink>
       </li>
 
       {user && (
-        <li>
-          <NavLink to={"/myListing"}>My Listings </NavLink>
-        </li>
+        <>
+          <li>
+            <NavLink to={"/addToFindRoomMate"}>Add Roommate</NavLink>
+          </li>
+          <li>
+            <NavLink to={"/myListing"}>My Listings </NavLink>
+          </li>
+        </>
       )}
+      <li>
+        <NavLink to={"/about"}>About</NavLink>
+      </li>
     </>
   );
 

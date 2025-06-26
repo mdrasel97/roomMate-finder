@@ -63,7 +63,7 @@ const Review = () => {
                 className="w-20 h-20 rounded-full mx-auto mb-4 object-cover"
               />
               <h3 className="text-xl font-semibold">{item.name}</h3>
-              <p className="text-gray-600 mt-2 italic">"{item.review}"</p>
+              <p className="mt-2 italic">"{item.review}"</p>
             </SwiperSlide>
           ))}
         </Swiper>

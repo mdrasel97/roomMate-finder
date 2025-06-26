@@ -2,6 +2,12 @@ import React from "react";
 import { AuthContext } from "../Context/AuthContext";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { Link } from "react-router";
+import { motion } from "framer-motion";
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0 },
+};
 
 const Roommate = ({ roommate }) => {
   const {
@@ -16,42 +22,42 @@ const Roommate = ({ roommate }) => {
     name,
     photoURL,
   } = roommate;
-  // useEffect(() => {
-  //   fetch();
-  // }, []);
+
   const safeLifestyle = Array.isArray(lifestyle)
     ? lifestyle
     : lifestyle
     ? [lifestyle]
     : [];
   return (
-    <div className="card bg-base-100 shadow-md border border-primary">
+    <motion.div
+      className="card bg-base-100 shadow-md border border-primary"
+      variants={fadeUp}
+      initial="hidden"
+      whileInView="visible"
+      transition={{ duration: 0.5 }}
+      viewport={{ once: true }}
+    >
       <div className="card-body">
+        {/* Header: Title & Availability */}
         <div className="flex justify-between items-start w-full">
-          <h2 className="card-title flex-4/6">{title}</h2>
+          <h2 className="card-title">{title}</h2>
           <span
-            className={`badge  ${
+            className={`badge ${
               availability === "Available"
                 ? "bg-green-500 text-[10px] text-white"
-                : "bg-red-500 text-[10px] flex-2/6 object-cover text-white"
+                : "bg-red-500 text-[10px] text-white"
             }`}
           >
             {availability}
           </span>
         </div>
 
-        <p className="text-sm text-gray-500 flex items-center gap-1">
+        {/* Location */}
+        <p className="text-sm flex items-center gap-1">
           <FaMapMarkerAlt /> {location}
         </p>
 
-        {/* <div className="flex flex-wrap gap-2 mt-2">
-          <span className="badge badge-outline">{roomType}</span>
-          {lifeStyle?.map((item, index) => (
-            <span key={index} className="badge badge-outline">
-              {item}
-            </span>
-          ))}
-        </div> */}
+        {/* Tags */}
         <div className="flex flex-wrap gap-2 mt-2">
           <span className="badge badge-outline">{roomType}</span>
           {safeLifestyle?.map((item, index) => (
@@ -61,19 +67,21 @@ const Roommate = ({ roommate }) => {
           ))}
         </div>
 
+        {/* Rent */}
         <p className="mt-2">
           <span className="font-semibold">Rent:</span> ${rent}/month
         </p>
 
-        <p className="text-sm text-gray-500 line-clamp-2">{description}</p>
+        {/* Short Description */}
+        <p className="text-sm line-clamp-2">{description}</p>
 
+        {/* Footer: User info and Button */}
         <div className="flex items-center mt-4 justify-between">
           <div className="flex items-center gap-2">
             <img
               src={photoURL}
               alt={name}
-              // || "https://i.pravatar.cc/40"
-              className="w-8 h-8 rounded-full"
+              className="w-8 h-8 rounded-full object-cover"
             />
             <span className="text-sm">{name}</span>
           </div>
@@ -85,7 +93,7 @@ const Roommate = ({ roommate }) => {
           </Link>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
