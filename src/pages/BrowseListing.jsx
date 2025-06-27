@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLoaderData } from "react-router";
 import Roommate from "./Roommate";
+import { toast } from "react-toastify";
 
 const BrowseListing = () => {
   const roommates = useLoaderData();
@@ -14,7 +15,7 @@ const BrowseListing = () => {
     fetch(`https://roommate-finder-server-mu.vercel.app/users`)
       .then((res) => res.json())
       .then((json) => setUsersData(json))
-      .catch((err) => console.error(err));
+      .catch((err) => toast.error(err));
   }, []);
 
   return (

@@ -14,7 +14,7 @@ const UpdateProfile = () => {
       await updateProfileUser({ displayName, photoURL });
       toast.success("Profile updated successfully!");
     } catch (error) {
-      console.error("Error updating profile:", error);
+      toast.error("Error updating profile:", error);
     }
   };
 

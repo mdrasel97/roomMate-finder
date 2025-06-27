@@ -53,7 +53,7 @@ const SignIn = () => {
         navigate(`${location.state ? location.state : "/"}`);
       })
       .catch((error) => {
-        console.error(error);
+        toast.error(error);
       });
   };
   return (

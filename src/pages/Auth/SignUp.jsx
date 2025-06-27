@@ -47,7 +47,7 @@ const SignUp = () => {
         }).then(() => user);
       })
       .then((user) => {
-        console.log("User with profile:", user);
+        // console.log("User with profile:", user);
 
         const userProfile = {
           email,
@@ -81,8 +81,7 @@ const SignUp = () => {
         }
       })
       .catch((error) => {
-        console.error("Registration error:", error);
-        toast.error("Registration failed!");
+        toast.error("Registration failed!", error);
       });
   };
 
@@ -160,7 +159,7 @@ const SignUp = () => {
           <div className="text-red-500 text-sm">{passwordError}</div>
         )}
 
-        <div className="text-xs text-gray-600">
+        <div className="text-xs">
           Password must contain at least 6 characters, including one uppercase
           and one lowercase letter and one number.
         </div>

@@ -23,7 +23,7 @@ const Dashboard = () => {
 
       {/* Toggle Icon (Mobile Only) */}
       <button
-        className="lg:hidden fixed top-4 right-4 z-50 text-3xl text-gray-700"
+        className="lg:hidden fixed top-4 right-4 z-50 text-3xl"
         onClick={toggleSidebar}
       >
         {isSidebarOpen ? <IoClose /> : <CgMenuRightAlt />}
@@ -31,7 +31,7 @@ const Dashboard = () => {
 
       {/* Mobile Sidebar Drawer */}
       <div
-        className={`fixed top-0 right-0 h-full w-64 bg-white shadow-md z-40 transform transition-transform duration-300 ease-in-out lg:hidden ${
+        className={`fixed top-0 right-0 h-full w-64 bg-gray-500 shadow-md z-40 transform transition-transform duration-300 ease-in-out lg:hidden ${
           isSidebarOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
