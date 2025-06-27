@@ -12,6 +12,8 @@ import UpdateRoommate from "../pages/UpdateRoommate";
 import Error from "../components/Error/Error";
 import Loading from "../components/Loading/Loading";
 import About from "../pages/about/About";
+import Dashboard from "../pages/dashboard/Dashboard";
+import Overview from "../pages/dashboard/Overview";
 
 export const router = createBrowserRouter([
   {
@@ -47,6 +49,7 @@ export const router = createBrowserRouter([
           ),
         hydrateFallbackElement: <Loading />,
       },
+
       {
         path: "about",
         Component: About,
@@ -59,22 +62,54 @@ export const router = createBrowserRouter([
         path: "signUp",
         Component: SignUp,
       },
+      // {
+      //   path: "addToFindRoommate",
+      //   element: (
+      //     <PrivateRoute>
+      //       <AddToFindRoomMate />
+      //     </PrivateRoute>
+      //   ),
+      // },
+      // {
+      //   path: "myListing",
+      //   element: (
+      //     <PrivateRoute>
+      //       <MyListing />
+      //     </PrivateRoute>
+      //   ),
+      // },
+      // {
+      //   path: "updatedRoommate/:id",
+      //   element: (
+      //     <PrivateRoute>
+      //       <UpdateRoommate />
+      //     </PrivateRoute>
+      //   ),
+      //   loader: ({ params }) =>
+      //     fetch(
+      //       `https://roommate-finder-server-mu.vercel.app/roommates/${params.id}`
+      //     ),
+      //   hydrateFallbackElement: <Loading />,
+      // },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: (
+      <PrivateRoute>
+        <Dashboard />
+      </PrivateRoute>
+    ),
+    children: [
+      { index: true, element: <Overview /> },
       {
-        path: "addToFindRoommate",
-        element: (
-          <PrivateRoute>
-            <AddToFindRoomMate />
-          </PrivateRoute>
-        ),
+        path: "browseListing",
+        element: <BrowseListing />,
+        loader: () =>
+          fetch("https://roommate-finder-server-mu.vercel.app/roommates"),
       },
-      {
-        path: "myListing",
-        element: (
-          <PrivateRoute>
-            <MyListing />
-          </PrivateRoute>
-        ),
-      },
+      { path: "addToFindRoomMate", element: <AddToFindRoomMate /> },
+      { path: "myListing", element: <MyListing /> },
       {
         path: "updatedRoommate/:id",
         element: (

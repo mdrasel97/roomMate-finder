@@ -1,25 +1,31 @@
 import React, { useContext } from "react";
 import { Link, NavLink } from "react-router";
 import { AuthContext } from "../../Context/AuthContext";
-import { toast } from "react-toastify";
 import { CgProfile } from "react-icons/cg";
 import logoImage from "../../assets/logo.png";
 import ThemeToggle from "../Theme/ThemeToggle";
 import { Typewriter } from "react-simple-typewriter";
+import { Menu } from "@headlessui/react";
+import {
+  ChevronDownIcon,
+  TrashIcon,
+  PencilIcon,
+} from "@heroicons/react/24/solid";
+import LogOut from "../LogOut";
 
 const Navbar = () => {
-  const { user, singOutUser } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   // const navigate = useNavigate();
-  const handleLogOut = () => {
-    singOutUser()
-      .then(() => {
-        toast.success("Sign out successful");
-        window.location.href = "/signIn";
-      })
-      .catch((error) => {
-        toast.error(error.message);
-      });
-  };
+  // const handleLogOut = () => {
+  //   singOutUser()
+  //     .then(() => {
+  //       toast.success("Sign out successful");
+  //       window.location.href = "/signIn";
+  //     })
+  //     .catch((error) => {
+  //       toast.error(error.message);
+  //     });
+  // };
 
   // update profile
   // const handleProfileClick = () => {
@@ -37,11 +43,14 @@ const Navbar = () => {
       {user && (
         <>
           <li>
+            <NavLink to={"/dashboard"}>Dashboard</NavLink>
+          </li>
+          {/* <li>
             <NavLink to={"/addToFindRoomMate"}>Add Roommate</NavLink>
           </li>
           <li>
             <NavLink to={"/myListing"}>My Listings </NavLink>
-          </li>
+          </li> */}
         </>
       )}
       <li>
@@ -78,17 +87,22 @@ const Navbar = () => {
             >
               {links}
               {user ? (
-                <button
-                  onClick={handleLogOut}
-                  className="btn btn-primary md:block"
-                >
-                  Log Out
-                </button>
+                <>{/* <LogOut /> */}</>
               ) : (
-                <div className="w-full">
-                  <Link to="/signUp" className="btn btn-primary w-full ">
-                    Sign Up
-                  </Link>
+                <div className="w-full space-y-3 mt-2">
+                  <div className="w-full">
+                    <Link
+                      to="/signIn"
+                      className="btn border border-primary w-full"
+                    >
+                      Login
+                    </Link>
+                  </div>
+                  <div>
+                    <Link to="/signUp" className="btn btn-primary w-full">
+                      Sign Up
+                    </Link>
+                  </div>
                 </div>
               )}
             </ul>
@@ -115,41 +129,75 @@ const Navbar = () => {
           <ThemeToggle />
           {user ? (
             <div className="md:flex items-center space-x-4">
-              <div className="relative group inline-block">
-                {user.photoURL ? (
-                  <img
-                    src={user.photoURL}
-                    alt={user.displayName || "User"}
-                    className="h-9 w-9 rounded-full object-cover border-2 border-primary cursor-pointer"
-                  />
-                ) : (
-                  <CgProfile className="h-9 w-9 rounded-full border cursor-pointer" />
-                )}
-                {/* Tooltip */}
-                <div className="absolute top-full left-1/2 translate-x-[-50%] mt-2 whitespace-nowrap px-2 py-1 text-sm bg-gray-800 text-white rounded opacity-0 group-hover:opacity-100 transition-opacity z-50">
-                  {user.displayName || "User"}
-                </div>
-              </div>
+              <Menu as="div" className="relative group inline-block">
+                <Menu.Button className="flex items-center gap-1 focus:outline-none">
+                  {user.photoURL ? (
+                    <img
+                      src={user.photoURL}
+                      alt={user.displayName || "User"}
+                      className="h-9 w-9 rounded-full object-cover border-2 border-primary cursor-pointer"
+                    />
+                  ) : (
+                    <div className="h-9 w-9  rounded-full flex items-center justify-center">
+                      U
+                    </div>
+                  )}
+                  <ChevronDownIcon className="h-4 w-4" />
+                </Menu.Button>
 
-              <button
-                onClick={handleLogOut}
-                className="btn btn-primary hidden md:block"
-              >
-                Log Out
-              </button>
+                <Menu.Items className="absolute right-0 z-50 mt-2 w-52 origin-top-right rounded-xl  backdrop-blur-md p-1 text-sm shadow-lg ring-1 bg-black text-white focus:outline-none">
+                  <Menu.Item>
+                    <p className="text-lg font-semibold text-center my-2">
+                      {user.displayName}
+                    </p>
+                  </Menu.Item>
+                  {/* <Menu.Item>
+                    <p>{user.email}</p>
+                  </Menu.Item> */}
+                  <div className="my-1 h-px bg-white/20" />
+                  <Menu.Item>
+                    {({ active }) => (
+                      <button
+                        className={`${
+                          active ? "bg-primary text-white" : ""
+                        } group flex w-full items-center gap-2 rounded-lg px-3 py-1.5`}
+                      >
+                        <PencilIcon className="h-4 w-4 text-white/60" />
+                        Edit Profile
+                      </button>
+                    )}
+                  </Menu.Item>
+                  <div className="my-1 h-px bg-white/20" />
+                  <Menu.Item>
+                    {() => (
+                      // <button
+                      //   onClick={handleLogOut}
+                      //   className={`${
+                      //     active ? "bg-primary text-white" : ""
+                      //   } group flex w-full items-center gap-2 rounded-lg px-3 py-1.5`}
+                      // >
+                      //   <TrashIcon className="h-4 w-4 text-white" />
+                      //   Log Out
+                      // </button>
+                      <LogOut />
+                    )}
+                  </Menu.Item>
+                </Menu.Items>
+              </Menu>
+
+              {/* Tooltip */}
+              <div className="absolute top-full left-1/2 translate-x-[-50%] mt-2 whitespace-nowrap px-2 py-1 text-sm bg-gray-800 text-white rounded opacity-0 group-hover:opacity-100 transition-opacity z-50">
+                {user.displayName || "User"}
+              </div>
             </div>
           ) : (
-            <div className="md:flex items-center space-x-3">
-              <div className="">
-                <Link to="/signIn" className="btn border border-primary">
-                  Login
-                </Link>
-              </div>
-              <div className="hidden md:flex">
-                <Link to="/signUp" className="btn btn-primary ">
-                  Sign Up
-                </Link>
-              </div>
+            <div className="md:flex items-center space-x-3 hidden">
+              <Link to="/signIn" className="btn border border-primary">
+                Login
+              </Link>
+              <Link to="/signUp" className="btn btn-primary md:block">
+                Sign Up
+              </Link>
             </div>
           )}
         </div>

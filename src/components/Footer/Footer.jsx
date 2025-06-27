@@ -78,7 +78,10 @@ const Footer = () => {
                 </NavLink>
               </li>
               <li>
-                <Link to="/addToFindRoommate" className="hover:text-primary">
+                <Link
+                  to="/dashboard/addToFindRoommate"
+                  className="hover:text-primary"
+                >
                   Add to Find Roommate
                 </Link>
               </li>
@@ -89,7 +92,10 @@ const Footer = () => {
               </li>
               {user && (
                 <li>
-                  <NavLink to={"/myListing"} className="hover:text-primary">
+                  <NavLink
+                    to={"/dashboard/myListing"}
+                    className="hover:text-primary"
+                  >
                     My Listings{" "}
                   </NavLink>
                 </li>

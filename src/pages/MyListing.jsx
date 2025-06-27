@@ -125,7 +125,7 @@ const MyListing = () => {
                   </td>
                   <th className="space-x-2 flex">
                     <Link
-                      to={`/updatedRoommate/${item._id}`}
+                      to={`/dashboard/updatedRoommate/${item._id}`}
                       className="btn btn-primary"
                     >
                       <FaPenFancy size={25} />
