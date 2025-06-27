@@ -7,8 +7,10 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
+  updateProfile,
 } from "firebase/auth";
 import { auth } from "../firebase/firebase.init";
+import { toast } from "react-toastify";
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -37,19 +39,22 @@ const AuthProvider = ({ children }) => {
   };
 
   // update profile
-  // const updateProfileUser = (name, photoUrl) => {
-  //   updateProfile(auth.currentUser, {
-  //     displayName: name,
-  //     photoURL: photoUrl,
-  //   })
-  //     .then(() => {
-  //       setUser({ ...user, displayName: name, photoURL: photoUrl });
-  //       toast.success("profile updated");
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // };
+  const updateProfileUser = async ({ displayName, photoURL }) => {
+    try {
+      await updateProfile(auth.currentUser, {
+        displayName,
+        photoURL,
+      });
+
+      setUser((prev) => ({
+        ...prev,
+        displayName,
+        photoURL,
+      }));
+    } catch (error) {
+      toast.error("Profile update failed:", error);
+    }
+  };
 
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -72,6 +77,7 @@ const AuthProvider = ({ children }) => {
     createUser,
     signInUser,
     googleSingIn,
+    updateProfileUser,
     singOutUser,
   };
   return <AuthContext value={userInfo}>{children}</AuthContext>;

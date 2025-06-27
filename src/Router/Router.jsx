@@ -14,6 +14,7 @@ import Loading from "../components/Loading/Loading";
 import About from "../pages/about/About";
 import Dashboard from "../pages/dashboard/Dashboard";
 import Overview from "../pages/dashboard/Overview";
+import UpdateProfile from "../components/UpdateProfile";
 
 export const router = createBrowserRouter([
   {
@@ -61,6 +62,10 @@ export const router = createBrowserRouter([
       {
         path: "signUp",
         Component: SignUp,
+      },
+      {
+        path: "updateProfile",
+        Component: UpdateProfile,
       },
       // {
       //   path: "addToFindRoommate",

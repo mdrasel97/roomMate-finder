@@ -45,12 +45,6 @@ const Navbar = () => {
           <li>
             <NavLink to={"/dashboard"}>Dashboard</NavLink>
           </li>
-          {/* <li>
-            <NavLink to={"/addToFindRoomMate"}>Add Roommate</NavLink>
-          </li>
-          <li>
-            <NavLink to={"/myListing"}>My Listings </NavLink>
-          </li> */}
         </>
       )}
       <li>
@@ -157,14 +151,16 @@ const Navbar = () => {
                   <div className="my-1 h-px bg-white/20" />
                   <Menu.Item>
                     {({ active }) => (
-                      <button
+                      <Link
+                        to={"/updateProfile"}
+                        // onClick={updateProfileUser}
                         className={`${
                           active ? "bg-primary text-white" : ""
                         } group flex w-full items-center gap-2 rounded-lg px-3 py-1.5`}
                       >
                         <PencilIcon className="h-4 w-4 text-white/60" />
                         Edit Profile
-                      </button>
+                      </Link>
                     )}
                   </Menu.Item>
                   <div className="my-1 h-px bg-white/20" />
@@ -195,7 +191,7 @@ const Navbar = () => {
               <Link to="/signIn" className="btn border border-primary">
                 Login
               </Link>
-              <Link to="/signUp" className="btn btn-primary md:block">
+              <Link to="/signUp" className="btn btn-primary">
                 Sign Up
               </Link>
             </div>

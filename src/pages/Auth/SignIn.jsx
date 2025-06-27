@@ -57,7 +57,7 @@ const SignIn = () => {
       });
   };
   return (
-    <div className="w-full max-w-md p-8 mx-auto my-5 space-y-3 rounded-xl border border-primary mt-20">
+    <div className="md:w-full max-w-md p-8 mx-auto my-5 space-y-3 rounded-xl border border-primary mt-20">
       <h1 className="text-2xl font-bold text-center">Welcome Back</h1>
       <form onSubmit={handleSignIn} className="space-y-6">
         <div className="space-y-1 text-sm">
