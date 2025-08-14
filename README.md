@@ -12,7 +12,7 @@ A full-stack web platform that helps individuals find compatible roommates based
 
 ### Featured Roommates Section
 
-![Featured Roommates](Screenshot/featured-roommates.png)
+![Featured Roommates](/src/assets/Screenshot%20fetured.png)
 
 ---
 
