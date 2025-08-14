@@ -4,6 +4,18 @@ A full-stack web platform that helps individuals find compatible roommates based
 
 ---
 
+## 🚀 Screenshots
+
+### Home Page
+
+![Home Page](assets/homepage.png)
+
+### Featured Roommates Section
+
+![Featured Roommates](Screenshot/featured-roommates.png)
+
+---
+
 ## 🚀 Features
 
 - 🔐 Email/Password + Google Authentication
