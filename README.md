@@ -8,7 +8,7 @@ A full-stack web platform that helps individuals find compatible roommates based
 
 ### Home Page
 
-![Home Page](assets/homepage.png)
+![Home Page](/src/assets/homepage.png)
 
 ### Featured Roommates Section
 
